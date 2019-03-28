@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" class="js no-touch cssanimations csstransitions"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>Online Jobs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<!-- Styles -->
+	<h:outputStylesheet name="css/bootstrap-grid.css"/>
+        <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css"></link>
+	<h:outputStylesheet name="css/animate.css"/>
+	<h:outputStylesheet name="css/style.css"/>
+	<h:outputStylesheet name="css/responsive.css"/>
+	<h:outputStylesheet name="css/chosen.css"/>
+	<h:outputStylesheet name="css/colors.css"/>
+	<h:outputStylesheet name="css/bootstrap.css"/>
+        <h:outputStylesheet name="css/custom.css"/>
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>-->
+    </h:head>
+    <h:body>
+        <div class="page-loading" style="display: none;">
+            <h:graphicImage name="img/loader.gif"/>
+            <span>Skip Loader</span>
+        </div>
+        <div class="theme-layout" id="scrollup">
+            <ui:insert name="top">
+                <ui:include src="/snippets/header.xhtml"/>
+            </ui:insert>
+            
+            <ui:insert name="content">Content</ui:insert>
+
+            <ui:insert name="bottom">
+                <ui:include src="/snippets/footer.xhtml"/>
+            </ui:insert>
+            
+        </div>
+        <h:outputScript library="js" name="jquery.js" />
+        <h:outputScript library="js" name="modernizr.js" />
+        <h:outputScript library="js" name="script.js" />
+        <h:outputScript library="js" name="bootstrap.js" />
+        <h:outputScript library="js" name="wow.js" />
+        <h:outputScript library="js" name="slick.js" />
+        <h:outputScript library="js" name="parallax.js" />
+        <h:outputScript library="js" name="select-chosen.js" />
+
+    </h:body>
+</html>
+

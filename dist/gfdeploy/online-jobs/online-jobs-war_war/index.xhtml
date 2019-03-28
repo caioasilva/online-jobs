@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+        <ui:composition template="./templates/page-stick.xhtml">
+        <ui:define name="content">
+		<section>
+			<div class="block no-padding">
+				<div class="container fluid">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="main-featured-sec">
+								<div class="new-slide">
+									<h:graphicImage name="img/vector-1.png"/>
+								</div>
+								<div class="job-search-sec">
+									<div class="job-search">
+										<h3>The Easiest Way to Get Your New Job</h3>
+										<span>Find Job Opportunities</span>
+                                                                                <form action="search.xhtml" method="GET">
+											<div class="row">
+												<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+													<div class="job-field">
+                                                                                                             
+														<input type="text" name="query" placeholder="Keywords or Job ID"/>
+														<i class="fa fa-keyboard-o"></i>
+													</div>
+												</div>
+												
+												<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                                                     
+                                                                                                    <button type="submit"><i class="fa fa-search"></i></button>
+												</div>
+											</div>
+										</form>
+		
+									</div>
+								</div>
+								<div class="scroll-to">
+									<a href="#scroll-here" title=""><i class="fa fa-arrow-down"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="scroll-here">
+			<div class="block">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="heading">
+								<h2>Featured Jobs</h2>
+								<span>Jobs recently added by our providers!</span>
+							</div><!-- Heading -->
+							<div class="job-listings-sec">
+                                                            <ui:repeat var="item" value="#{indexBean.recentJobs}">
+                                                                    <h:link outcome="job">
+                                                                    <f:param name="id" value="#{item.id}" />
+									<div class="job-listing">
+                                                                            
+										<div class="job-title-sec">
+											<div class="c-logo"> <h:graphicImage class="job-list-img" name="img/job.png" alt=""/> </div>
+                                                                                        <h3>#{item.title}</h3>
+                                                                                        <span>#{item.name}</span>
+										</div>
+                                                                            <span class="job-lctn"><i class="fa fa-calendar-plus-o"></i>#{item.creationDate}</span>
+<!--										<span class="fav-job"><i class="fa fa-heart-o"></i></span>-->
+                                                                                <span class="job-is ft">€#{item.payment}</span>
+									</div><!-- Job -->
+                                                                   </h:link>
+								</ui:repeat>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="browse-all-cat">
+								<a href="#" title="">Load more listings</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="block">
+				<div data-velocity="-.1" style="background: transparent url('#{resource['img/parallax2.jpg']}') repeat scroll 50% 0px;" class="parallax scrolly-invisible layer color light"></div><!-- PARALLAX BACKGROUND IMAGE -->
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="heading light">
+								<h2>Our New Candidates</h2>
+								<span>Some people that just joined our huge database!</span>
+							</div><!-- Heading -->
+							<div class="reviews-car row" id="reviews-carousel" role="toolbar">
+                                                            <c:forEach var="item" items="#{indexBean.someFreelancers}">
+           
+                                                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                                                    <h:link outcome="candidate">
+                                                                    <f:param name="id" value="#{item.id}" />
+									<div class="reviews">
+										<h:graphicImage name="img/john.jpg" alt=""/>
+                                                                                <h3>#{item.name}<span>#{item.role}</span></h3>
+                                                                                <p>#{item.message}</p>
+									</div><!-- Reviews -->
+                                                                         </h:link>
+                                                                </div>
+                                                            
+                                                            </c:forEach>
+                                                        </div>
+                                                
+								
+								
+                                                </div>		
+					</div>
+				</div>	
+			</div>
+		</section>
+
+		<section>
+			<div class="block">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="heading">
+								<h2>Companies We've Helped</h2>
+								<span>Some of the companies we've helped recruit excellent applicants over the years.</span>
+							</div><!-- Heading -->
+							<div class="comp-sec">
+								<div class="company-img">
+									<a href="#" title=""><h:graphicImage name="img/cc1.jpg" alt=""/></a>
+								</div><!-- Client  -->
+								<div class="company-img">
+									<a href="#" title=""><h:graphicImage name="img/cc2.jpg" alt=""/></a>
+								</div><!-- Client  -->
+								<div class="company-img">
+									<a href="#" title=""><h:graphicImage name="img/cc3.jpg" alt=""/></a>
+								</div><!-- Client  -->
+								<div class="company-img">
+									<a href="#" title=""><h:graphicImage name="img/cc4.jpg" alt=""/></a>
+								</div><!-- Client  -->
+								<div class="company-img">
+									<a href="#" title=""><h:graphicImage name="img/cc5.jpg" alt=""/></a>
+								</div><!-- Client  -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>
+
