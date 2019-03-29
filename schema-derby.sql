@@ -31,7 +31,7 @@ CREATE TABLE jobs (
   id integer NOT NULL,
   provider_id integer NOT NULL,
   title varchar(200) NOT NULL,
-  description mediumclob,
+  description clob,
   status varchar(10) NOT NULL DEFAULT 'open',
   payment decimal(10,2) NOT NULL DEFAULT 0.00,
   creation_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP

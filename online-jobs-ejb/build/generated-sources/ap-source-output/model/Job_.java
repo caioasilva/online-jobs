@@ -11,7 +11,7 @@ import model.JobOffer;
 import model.Log;
 import model.Provider;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-03-28T18:45:30")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-03-28T23:56:15")
 @StaticMetamodel(Job.class)
 public class Job_ { 
 

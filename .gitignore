@@ -16,8 +16,10 @@ hs_err_pid*
 **/nbproject/private/
 **/nbproject/Makefile-*.mk
 **/nbproject/Package-*.bash
-build/
-nbbuild/
-dist/
-nbdist/
+**/build/
+**/nbbuild/
+**/dist/
+**/nbdist/
 .nb-gradle/
+online-jobs-ejb/build/
+online-jobs-war/build/

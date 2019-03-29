@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import model.Job;
 import model.JobKeywordPK;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-03-28T18:45:30")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-03-28T23:56:15")
 @StaticMetamodel(JobKeyword.class)
 public class JobKeyword_ { 
 
