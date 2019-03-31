@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package website.beans;
+package beans;
 
 import beans.FreelancersBeanLocal;
 import beans.JobsBeanLocal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -36,6 +37,7 @@ public class IndexBean {
      */
     public IndexBean() {
     }
+    
     
     public List<JobDescription> getRecentJobs(){
         List<JobDescription> l = jobsBean.getJobsDescLimit(0, 10);

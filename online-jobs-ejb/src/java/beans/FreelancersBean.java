@@ -19,18 +19,17 @@ import model.FreelancerSkill;
  */
 @Stateless
 public class FreelancersBean implements FreelancersBeanLocal {
+
     @PersistenceContext(unitName = "online-jobs-ejbPU")
     private EntityManager em;
-    
+
     @Override
-    public List<Freelancer> getFreelancersLimit(int start, int quant){
+    public List<Freelancer> getFreelancersLimit(int start, int quant) {
         Query q = em.createNamedQuery("Freelancer.findAll");
         return q.setMaxResults(quant).setFirstResult(start).getResultList();
     }
-    
-    
-    
-     /**
+
+    /**
      * make the passed object persistent
      *
      * @param object object to be made persistent
@@ -43,7 +42,12 @@ public class FreelancersBean implements FreelancersBeanLocal {
     public Freelancer getFreelancerById(int id) {
         Query q = em.createNamedQuery("Freelancer.findById");
         q.setParameter("id", id);
-        return (Freelancer) q.getSingleResult();
+        try {
+            return (Freelancer) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     @Override
@@ -52,6 +56,5 @@ public class FreelancersBean implements FreelancersBeanLocal {
         q.setParameter("freelancerId", id);
         return q.getResultList();
     }
-    
-    
+
 }

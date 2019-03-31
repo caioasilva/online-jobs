@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package website.beans;
+package beans;
 
 import beans.FreelancersBeanLocal;
 import beans.JobsBeanLocal;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -46,6 +47,10 @@ public class CandidateBean {
     public Freelancer getCandidate() {
         return candidate;
     }
+
+    public void setCandidate(Freelancer candidate) {
+        this.candidate = candidate;
+    }
     
     private List<FreelancerSkill> skills;
 
@@ -53,8 +58,11 @@ public class CandidateBean {
         return skills;
     }
     
-
-
+        public void setSkills(List<FreelancerSkill> skills) {
+        this.skills = skills;
+    }
+    
+   
     
     /**
      * Creates a new instance of JobBean

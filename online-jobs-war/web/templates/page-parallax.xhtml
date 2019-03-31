@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" class="js no-touch cssanimations csstransitions"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/templates/page.xhtml">
+        <ui:define name="top">
+            <ui:include src="/snippets/header.xhtml">
+                <ui:param name = "headerClass" value = "stick-top" />
+            </ui:include>
+            <section class="overlape">
+                <div class="block no-padding">
+                    <div data-velocity="-.1"  class="parallax scrolly-invisible no-parallax parallax-bg"></div><!-- PARALLAX BACKGROUND IMAGE -->
+                    <div class="container fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="inner-header">
+                                    <h3>#{headerTitle}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>
+

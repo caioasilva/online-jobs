@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -32,7 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
     , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
     , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
-    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+    , @NamedQuery(name = "User.findByUsernamePassword", query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password")
+//    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
     , @NamedQuery(name = "User.findByType", query = "SELECT u FROM User u WHERE u.type = :type")})
 public class User implements Serializable {
 
@@ -56,10 +58,10 @@ public class User implements Serializable {
     @NotNull
     @Column(name = "TYPE")
     private Character type;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Freelancer> freelancerCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Provider> providerCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy  = "userId")
+    private Freelancer freelancer;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Provider provider;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Log> logCollection;
 
@@ -110,21 +112,21 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Freelancer> getFreelancerCollection() {
-        return freelancerCollection;
+    public Freelancer getFreelancer() {
+        return freelancer;
     }
 
-    public void setFreelancerCollection(Collection<Freelancer> freelancerCollection) {
-        this.freelancerCollection = freelancerCollection;
+    public void setFreelancer(Freelancer freelancer) {
+        this.freelancer = freelancer;
     }
 
     @XmlTransient
-    public Collection<Provider> getProviderCollection() {
-        return providerCollection;
+    public Provider getProvider() {
+        return provider;
     }
 
-    public void setProviderCollection(Collection<Provider> providerCollection) {
-        this.providerCollection = providerCollection;
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 
     @XmlTransient

@@ -5,7 +5,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="/templates/page.xhtml">
         <ui:define name="top">
-            <ui:include src="/snippets/header_index.xhtml"/>
+            <ui:include src="/snippets/header.xhtml">
+                <ui:param name = "headerClass" value = "stick-top" />
+            </ui:include>
         </ui:define>
     </ui:composition>
 </html>

@@ -5,15 +5,17 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="./templates/page-stick.xhtml">
+    <ui:composition template="/templates/page-stick.xhtml">
         <h:head>
+            <!--
             <f:metadata>
                 <f:viewParam name="query" value="#{searchBean.query}"/>
                 <f:event listener="#{searchBean.init()}" type="preRenderView"/>
             </f:metadata>
+            -->
         </h:head>
         <ui:define name="content">
-<section class="overlape">
+        <section class="overlape">
 		<div class="block no-padding">
 			<div data-velocity="-.1" class="parallax scrolly-invisible no-parallax parallax-bg"></div><!-- PARALLAX BACKGROUND IMAGE -->
 			<div class="container fluid">
@@ -22,7 +24,7 @@
 						<div class="inner-header wform">
 							<div class="job-search-sec">
 								<div class="job-search">
-									<h4>Explore Thousand Of Jobs With Just Simple Search...</h4>
+									<h4>Explore Jobs With Just Simple Search...</h4>
 									<form action="search.xhtml" method="GET">
 										<div class="row">
 											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
@@ -109,7 +111,7 @@
 										<option>Most Recent</option>
 									</select>
 					 			</div>-->
-					 			<h4>98 Jobs And Vacancies</h4>
+					 			<h4>Jobs And Vacancies</h4>
 					 		</div>
 						 </div><!-- MOdern Job LIst -->
 						 <div class="job-list-modern">
