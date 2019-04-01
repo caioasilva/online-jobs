@@ -8,6 +8,7 @@ package model;
 import java.io.Serializable;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,6 +22,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,6 +43,15 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Freelancer.findByEmail", query = "SELECT f FROM Freelancer f WHERE f.email = :email")
     , @NamedQuery(name = "Freelancer.findByRole", query = "SELECT f FROM Freelancer f WHERE f.role = :role")})
 public class Freelancer implements Serializable {
+
+    @Lob
+    @Column(name = "IMAGE")
+    private byte[] image;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -68,9 +80,6 @@ public class Freelancer implements Serializable {
     @OneToOne(optional = false)
     private User userId;
     
-    @Lob
-    @Column(name = "IMAGE")
-    private byte[] image;
     
     public Freelancer() {
     }
@@ -158,22 +167,31 @@ public class Freelancer implements Serializable {
         return "model.Freelancer[ id=" + id + " ]";
     }
     
-        public byte [] getImage() {
-        return image;
-    }
     
     public String getImageBase64(){
         if(this.image != null){
             String encode=Base64.getEncoder().encodeToString(this.image);
             return "data:image/jpeg;base64,"+encode;
         }else{
-            return "/online-jobs-war/javax.faces.resource/img/default-freelancer.jpg.xhtml";
+            return "/online-jobs-war/javax.faces.resource/img/default-freelancer.png.xhtml";
         }
         
     }
 
-    public void setImage(byte [] image) {
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
     
 }

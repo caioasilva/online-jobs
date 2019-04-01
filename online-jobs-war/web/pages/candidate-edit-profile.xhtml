@@ -10,7 +10,7 @@
         <ui:define name="dashboard-menu">
             <ui:include src="/snippets/candidate_menu.xhtml"/>
         </ui:define>
-        <ui:param name = "headerTitle" value = "Welcome Name" />
+        <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.freelancer.name}" />
         <ui:define name="dashboard-content">
             <div>
             <h:form enctype="multipart/form-data">

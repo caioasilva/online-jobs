@@ -119,13 +119,17 @@
                                                 <f:param name="id" value="#{item.id}" />
                                                 <div class="job-listing wtabs">
                                                     <div class="job-title-sec">
-                                                        <div class="c-logo"> <h:graphicImage class="job-list-img" name="img/job.png" alt=""/> </div>
+                                                        <div class="c-logo"> <img class="job-list-img" src="#{item.providerId.imageBase64}" alt=""/> </div>
                                                         <h3>#{item.title}</h3>
-                                                        <span>#{item.name}</span>
+                                                        <span>#{item.providerId.name}</span>
                                                     </div>
                                                     <div class="job-style-bx">
                                                         <span class="job-is ft">€#{item.payment}</span>
-                                                        <i><i class="fa fa-calendar-plus-o"></i> 5 months ago</i>
+                                                        <i><i class="fa fa-calendar-plus-o"></i> 
+                                                            <h:outputText value="#{item.creationDate}">
+                                                                <f:converter converterId="timefromnow"/>
+                                                            </h:outputText>
+                                                        </i>
                                                     </div>
                                                 </div>
                                             </h:link>

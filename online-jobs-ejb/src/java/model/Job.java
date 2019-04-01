@@ -78,7 +78,7 @@ public class Job implements Serializable {
     private Collection<JobKeyword> jobKeywordCollection;
     @JoinColumn(name = "PROVIDER_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Provider provider;
+    private Provider providerId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "job")
     private Collection<JobOffer> jobOfferCollection;
     @OneToMany(mappedBy = "jobId")
@@ -156,12 +156,12 @@ public class Job implements Serializable {
         this.jobKeywordCollection = jobKeywordCollection;
     }
 
-    public Provider getProvider() {
-        return provider;
+    public Provider getProviderId() {
+        return providerId;
     }
 
-    public void setProvider(Provider provider) {
-        this.provider = provider;
+    public void setProviderId(Provider provider) {
+        this.providerId = provider;
     }
 
     @XmlTransient

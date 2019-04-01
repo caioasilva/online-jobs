@@ -8,6 +8,7 @@ package model;
 import java.io.Serializable;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,6 +22,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,6 +42,15 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Provider.findByName", query = "SELECT p FROM Provider p WHERE p.name = :name")})
 public class Provider implements Serializable {
 
+    @Lob
+    @Column(name = "IMAGE")
+    private byte [] image;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -56,9 +68,6 @@ public class Provider implements Serializable {
     @OneToOne(optional = false)
     private User userId;
     
-    @Lob
-    @Column(name = "IMAGE")
-    private byte[] image;
 
     public Provider() {
     }
@@ -130,9 +139,6 @@ public class Provider implements Serializable {
         return "model.Provider[ id=" + id + " ]";
     }
     
-    public byte [] getImage() {
-        return image;
-    }
     
     public String getImageBase64(){
         if(this.image != null){
@@ -144,8 +150,20 @@ public class Provider implements Serializable {
         
     }
 
+    public byte [] getImage() {
+        return image;
+    }
+
     public void setImage(byte [] image) {
         this.image = image;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
     
 }

@@ -65,11 +65,16 @@
                                             <div class="job-listing">
 
                                                 <div class="job-title-sec">
-                                                    <div class="c-logo"><img src="#{item.provider.imageBase64}"/></div>
+                                                    <div class="c-logo"><img class="job-list-img" src="#{item.providerId.imageBase64}"/></div>
                                                     <h3>#{item.title}</h3>
-                                                    <span>#{item.provider.name}</span>
+                                                    <span>#{item.providerId.name}</span>
                                                 </div>
-                                                <span class="job-lctn"><i class="fa fa-calendar-plus-o"></i>#{item.creationDate}</span>
+                                                <span class="job-lctn">
+                                                    <i class="fa fa-calendar-plus-o"></i>
+                                                    <h:outputText value="#{item.creationDate}">
+                                                        <f:converter converterId="timefromnow"/>
+                                                    </h:outputText>
+                                                </span>
                                                 <!--										<span class="fav-job"><i class="fa fa-heart-o"></i></span>-->
                                                 <span class="job-is ft">€#{item.payment}</span>
                                             </div><!-- Job -->

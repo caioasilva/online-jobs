@@ -44,6 +44,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByType", query = "SELECT u FROM User u WHERE u.type = :type")})
 public class User implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Provider> providerCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Freelancer> freelancerCollection;
+
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -168,6 +174,24 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "model.User[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Freelancer> getFreelancerCollection() {
+        return freelancerCollection;
+    }
+
+    public void setFreelancerCollection(Collection<Freelancer> freelancerCollection) {
+        this.freelancerCollection = freelancerCollection;
+    }
+
+    @XmlTransient
+    public Collection<Provider> getProviderCollection() {
+        return providerCollection;
+    }
+
+    public void setProviderCollection(Collection<Provider> providerCollection) {
+        this.providerCollection = providerCollection;
     }
 
     
