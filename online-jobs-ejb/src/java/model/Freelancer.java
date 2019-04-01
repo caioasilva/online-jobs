@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -66,6 +67,10 @@ public class Freelancer implements Serializable {
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     @OneToOne(optional = false)
     private User userId;
+    
+    @Lob
+    @Column(name = "IMAGE")
+    private byte[] image;
     
     public Freelancer() {
     }
@@ -151,6 +156,24 @@ public class Freelancer implements Serializable {
     @Override
     public String toString() {
         return "model.Freelancer[ id=" + id + " ]";
+    }
+    
+        public byte [] getImage() {
+        return image;
+    }
+    
+    public String getImageBase64(){
+        if(this.image != null){
+            String encode=Base64.getEncoder().encodeToString(this.image);
+            return "data:image/jpeg;base64,"+encode;
+        }else{
+            return "/online-jobs-war/javax.faces.resource/img/default-freelancer.jpg.xhtml";
+        }
+        
+    }
+
+    public void setImage(byte [] image) {
+        this.image = image;
     }
     
 }

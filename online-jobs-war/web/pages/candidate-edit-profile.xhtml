@@ -12,19 +12,26 @@
         </ui:define>
         <ui:param name = "headerTitle" value = "Welcome Name" />
         <ui:define name="dashboard-content">
+            <div>
+            <h:form enctype="multipart/form-data">
+                <div class="profile-title">
+                    <h3>My Profile</h3>
+                    <div class="upload-img-bar">
+                        <span class="round"><img src="#{loginBean.user.freelancer.imageBase64}" class="img-trocar" /></span>
+                        <div class="upload-info">
 
-            <div class="profile-title">
-                <h3>My Profile</h3>
-                <div class="upload-img-bar">
-                    <span class="round"><h:graphicImage library="profile-imgs" name="#{loginBean.user.freelancer.id}.jpg" /></span>
-                    <div class="upload-info">
-                        <a href="#" title="">Browse</a>
-                        <span>Max file size is 1MB, Minimum dimension: 270x210 And Suitable files are .jpg &amp; .png</span>
+                                <h:outputLabel for="img-file" value="Pick a file" styleClass="upload" />
+                                <h:inputFile id="img-file" value="#{loginBean.uploadedFile}" styleClass="upload" onchange="javascript:readURL(this);"> 
+                                    <f:passThroughAttribute name="accept" value="image/*"/>
+                                </h:inputFile>
+
+                            <!--<a href="#" title="">Browse</a>-->
+                            <span>Max file size is 1MB. Suitable files are .jpg &amp; .png</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="profile-form-edit">
-                <h:form>
+                <div class="profile-form-edit">
+
                     <div class="row">
                         <div class="col-lg-6">
                             <span class="pf-title">Full Name</span>
@@ -63,10 +70,11 @@
                             <button type="submit" jsf:action="#{loginBean.updateUser()}">Update</button>
                         </div>
                     </div>
-                </h:form>
+
+                </div>
+
+            </h:form>
             </div>
-
-
         </ui:define>
 
     </ui:composition>

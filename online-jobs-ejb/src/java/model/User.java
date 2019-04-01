@@ -5,13 +5,19 @@
  */
 package model;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.sql.Blob;
+import java.util.Base64;
 import java.util.Collection;
+import java.util.stream.Stream;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -37,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
 //    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
     , @NamedQuery(name = "User.findByType", query = "SELECT u FROM User u WHERE u.type = :type")})
 public class User implements Serializable {
+
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -162,5 +169,6 @@ public class User implements Serializable {
     public String toString() {
         return "model.User[ id=" + id + " ]";
     }
+
     
 }

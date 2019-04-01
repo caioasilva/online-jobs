@@ -7,7 +7,7 @@ package beans;
 
 import java.util.List;
 import javax.ejb.Local;
-import model.JobDescription;
+import model.Job;
 
 /**
  *
@@ -15,9 +15,9 @@ import model.JobDescription;
  */
 @Local
 public interface JobsBeanLocal {
-    List<JobDescription> getAllJobs();
-    List<JobDescription> getJobsDescLimit(int start, int quant);
-    JobDescription getJobById(int id);
+    List<Job> getAllJobs();
+    List<Job> getJobsDescLimit(int start, int quant);
+    Job getJobById(int id);
 
-    List<JobDescription> getJobsByKeywords(List<String> keywords);
+    List<Job> getJobsByKeywords(List<String> keywords);
 }

@@ -15,7 +15,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import model.Freelancer;
-import model.JobDescription;
+import model.Job;
 
 /**
  *
@@ -39,8 +39,8 @@ public class IndexBean {
     }
     
     
-    public List<JobDescription> getRecentJobs(){
-        List<JobDescription> l = jobsBean.getJobsDescLimit(0, 10);
+    public List<Job> getRecentJobs(){
+        List<Job> l = jobsBean.getJobsDescLimit(0, 10);
         return l;
     }
     

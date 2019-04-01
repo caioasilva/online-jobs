@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -13,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -53,6 +55,10 @@ public class Provider implements Serializable {
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     @OneToOne(optional = false)
     private User userId;
+    
+    @Lob
+    @Column(name = "IMAGE")
+    private byte[] image;
 
     public Provider() {
     }
@@ -122,6 +128,24 @@ public class Provider implements Serializable {
     @Override
     public String toString() {
         return "model.Provider[ id=" + id + " ]";
+    }
+    
+    public byte [] getImage() {
+        return image;
+    }
+    
+    public String getImageBase64(){
+        if(this.image != null){
+            String encode=Base64.getEncoder().encodeToString(this.image);
+            return "data:image/jpeg;base64,"+encode;
+        }else{
+            return "/online-jobs-war/javax.faces.resource/img/default-provider.png.xhtml";
+        }
+        
+    }
+
+    public void setImage(byte [] image) {
+        this.image = image;
     }
     
 }

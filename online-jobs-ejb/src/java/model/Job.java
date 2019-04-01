@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Job.findByTitle", query = "SELECT j FROM Job j WHERE j.title = :title")
     , @NamedQuery(name = "Job.findByStatus", query = "SELECT j FROM Job j WHERE j.status = :status")
     , @NamedQuery(name = "Job.findByPayment", query = "SELECT j FROM Job j WHERE j.payment = :payment")
-    , @NamedQuery(name = "Job.findByCreationDate", query = "SELECT j FROM Job j WHERE j.creationDate = :creationDate")})
+    , @NamedQuery(name = "Job.findByCreationDate", query = "SELECT j FROM Job j WHERE j.creationDate = :creationDate")
+    , @NamedQuery(name = "Job.findAllOrderByDate", query = "SELECT j FROM Job j ORDER BY j.creationDate DESC")})
 public class Job implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,7 +78,7 @@ public class Job implements Serializable {
     private Collection<JobKeyword> jobKeywordCollection;
     @JoinColumn(name = "PROVIDER_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Provider providerId;
+    private Provider provider;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "job")
     private Collection<JobOffer> jobOfferCollection;
     @OneToMany(mappedBy = "jobId")
@@ -155,12 +156,12 @@ public class Job implements Serializable {
         this.jobKeywordCollection = jobKeywordCollection;
     }
 
-    public Provider getProviderId() {
-        return providerId;
+    public Provider getProvider() {
+        return provider;
     }
 
-    public void setProviderId(Provider providerId) {
-        this.providerId = providerId;
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 
     @XmlTransient

@@ -13,7 +13,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
-import model.JobDescription;
+import model.Job;
 
 /**
  *
@@ -46,9 +46,9 @@ public class SearchBean {
         this.keywords = keywords;
     }
 
-    private List<JobDescription> results;
+    private List<Job> results;
 
-    public List<JobDescription> getResults() {
+    public List<Job> getResults() {
         return results;
     }
 

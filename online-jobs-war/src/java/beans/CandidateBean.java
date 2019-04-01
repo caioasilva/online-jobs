@@ -17,7 +17,6 @@ import javax.faces.bean.ManagedProperty;
 import model.Freelancer;
 import model.FreelancerSkill;
 import model.FreelancerSkillPK;
-import model.JobDescription;
 
 /**
  *

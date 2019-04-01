@@ -11,7 +11,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
-import model.JobDescription;
+import model.Job;
 
 /**
  *
@@ -34,9 +34,9 @@ public class JobBean {
         return id;
     }
     
-    private JobDescription job;
+    private Job job;
 
-    public JobDescription getJob() {
+    public Job getJob() {
         return job;
     }
 

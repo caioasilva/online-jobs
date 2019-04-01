@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import model.JobDescription;
+import model.Job;
 
 /**
  *
@@ -23,14 +23,14 @@ public class JobsBean implements JobsBeanLocal {
     private EntityManager em;
     
     @Override
-    public List<JobDescription> getAllJobs(){
-        Query q = em.createNamedQuery("JobDescription.findAll");
+    public List<Job> getAllJobs(){
+        Query q = em.createNamedQuery("Job.findAll");
         return q.getResultList();
     }
     
     @Override
-    public List<JobDescription> getJobsDescLimit(int start, int quant){
-        Query q = em.createNamedQuery("JobDescription.findAllOrderByDate");
+    public List<Job> getJobsDescLimit(int start, int quant){
+        Query q = em.createNamedQuery("Job.findAllOrderByDate");
         return q.setMaxResults(quant).setFirstResult(start).getResultList();
     }
     
@@ -45,12 +45,12 @@ public class JobsBean implements JobsBeanLocal {
     }
 
     @Override
-    public JobDescription getJobById(int id) {
+    public Job getJobById(int id) {
 //        JobDescription ret;
         try{
-            Query q = em.createNamedQuery("JobDescription.findById");
+            Query q = em.createNamedQuery("Job.findById");
             q.setParameter("id", id);
-            List<JobDescription> r = q.getResultList();
+            List<Job> r = q.getResultList();
             if (r.size() == 0)
                 return null;
             return r.get(0);
@@ -61,8 +61,8 @@ public class JobsBean implements JobsBeanLocal {
     }
 
     @Override
-    public List<JobDescription> getJobsByKeywords(List<String> keywords) {
-        String query = "SELECT j FROM JobDescription j WHERE j.id IN (SELECT k.jobKeywordPK.jobId FROM JobKeyword k WHERE ";
+    public List<Job> getJobsByKeywords(List<String> keywords) {
+        String query = "SELECT j FROM Job j WHERE j.id IN (SELECT k.jobKeywordPK.jobId FROM JobKeyword k WHERE ";
         for (String keyword: keywords){
             query+=" lower(k.jobKeywordPK.keyword) LIKE lower('"+keyword+"') OR";
         }
