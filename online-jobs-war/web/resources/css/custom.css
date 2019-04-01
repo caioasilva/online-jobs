@@ -19,5 +19,6 @@ and open the template in the editor.
 }
 
 .parallax-bg{
-    background:url('#{resource['img/mslider1.jpg']}') repeat scroll 50% 422.28px transparent;
+    background:url('#{resource['img/parallax.jpeg']}');
+    background-position: 50% 20%;
 }

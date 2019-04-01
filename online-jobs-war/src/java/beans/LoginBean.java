@@ -91,7 +91,7 @@ public class LoginBean implements Serializable {
             FreelancerSkill f = new FreelancerSkill(user.getFreelancer().getId(), s);
             l_skills.add(f);
         }
-        usersBean.updateFreelancerSkills(l_skills);
+        freelancersBean.updateFreelancerSkills(user.getFreelancer().getId(),l_skills);
     }
     
     public String login() throws IOException{
@@ -111,7 +111,7 @@ public class LoginBean implements Serializable {
     public String logout() {
         // Set the paremeter indicating that user is logged in to false
         loggedIn = false;
-        error = "Logged Out Succesfully!";
+//        error = "Logged Out Succesfully!";
         ExternalContext ectx = FacesContext.getCurrentInstance().getExternalContext();
         HttpServletResponse response = (HttpServletResponse)ectx.getResponse();
         HttpSession session = (HttpSession)ectx.getSession(false);

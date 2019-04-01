@@ -21,6 +21,5 @@ public interface UsersBeanLocal {
 
     User updateUser(User u);
 
-    void updateFreelancerSkills(List<FreelancerSkill> skills);
     
 }

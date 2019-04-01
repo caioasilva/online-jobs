@@ -25,7 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "FreelancerSkill.findAll", query = "SELECT f FROM FreelancerSkill f")
     , @NamedQuery(name = "FreelancerSkill.findByFreelancerId", query = "SELECT f FROM FreelancerSkill f WHERE f.freelancerSkillPK.freelancerId = :freelancerId")
-    , @NamedQuery(name = "FreelancerSkill.findBySkill", query = "SELECT f FROM FreelancerSkill f WHERE f.freelancerSkillPK.skill = :skill")})
+    , @NamedQuery(name = "FreelancerSkill.findBySkill", query = "SELECT f FROM FreelancerSkill f WHERE f.freelancerSkillPK.skill = :skill")
+    , @NamedQuery(name = "FreelancerSkill.deleteByFreelancerId", query = "DELETE FROM FreelancerSkill s WHERE s.freelancerSkillPK.freelancerId=:freelancerId")})
 public class FreelancerSkill implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -48,16 +48,7 @@ public class UsersBean implements UsersBeanLocal {
         return em.merge(u);
     }
 
-    @Override
-    public void updateFreelancerSkills(List<FreelancerSkill> skills) {
-        Query q = em.createQuery("delete from FreelancerSkill s where s.freelancerSkillPK.freelancerId=:freelancerId");
-        q.setParameter("freelancerId", skills.get(0).getFreelancerSkillPK().getFreelancerId());
-        q.executeUpdate();
-        for (FreelancerSkill skill:skills){
-            em.persist(skill);
-        }
-        
-    }
+    
     
     
     

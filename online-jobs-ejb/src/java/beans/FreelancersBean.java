@@ -56,5 +56,16 @@ public class FreelancersBean implements FreelancersBeanLocal {
         q.setParameter("freelancerId", id);
         return q.getResultList();
     }
+    
+    @Override
+    public void updateFreelancerSkills(int id, List<FreelancerSkill> skills) {
+        Query q = em.createNamedQuery("FreelancerSkill.deleteByFreelancerId");
+        q.setParameter("freelancerId", id);
+        q.executeUpdate();
+        for (FreelancerSkill skill:skills){
+            em.persist(skill);
+        }
+        
+    }
 
 }

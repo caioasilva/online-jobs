@@ -21,4 +21,6 @@ public interface FreelancersBeanLocal {
     Freelancer getFreelancerById(int id);
 
     List<FreelancerSkill> getFreelancerSkillsById(int id);
+    
+    void updateFreelancerSkills(int id, List<FreelancerSkill> skills);
 }
