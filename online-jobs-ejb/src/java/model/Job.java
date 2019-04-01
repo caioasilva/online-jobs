@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Job.findByTitle", query = "SELECT j FROM Job j WHERE j.title = :title")
     , @NamedQuery(name = "Job.findByStatus", query = "SELECT j FROM Job j WHERE j.status = :status")
     , @NamedQuery(name = "Job.findByPayment", query = "SELECT j FROM Job j WHERE j.payment = :payment")
-    , @NamedQuery(name = "Job.findByCreationDate", query = "SELECT j FROM Job j WHERE j.creationDate = :creationDate")})
+    , @NamedQuery(name = "Job.findByCreationDate", query = "SELECT j FROM Job j WHERE j.creationDate = :creationDate")
+    , @NamedQuery(name = "Job.findAllOrderByDate", query = "SELECT j FROM Job j ORDER BY j.creationDate DESC")})
 public class Job implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -159,8 +160,8 @@ public class Job implements Serializable {
         return providerId;
     }
 
-    public void setProviderId(Provider providerId) {
-        this.providerId = providerId;
+    public void setProviderId(Provider provider) {
+        this.providerId = provider;
     }
 
     @XmlTransient

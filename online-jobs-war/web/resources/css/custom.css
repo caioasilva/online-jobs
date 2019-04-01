@@ -19,5 +19,28 @@ and open the template in the editor.
 }
 
 .parallax-bg{
-    background:url('#{resource['img/mslider1.jpg']}') repeat scroll 50% 422.28px transparent;
+    background:url('#{resource['img/parallax.jpeg']}');
+    background-position: 50% 20%;
+}
+
+label.upload{
+    float: left;
+    font-family: Open Sans;
+    font-size: 15px;
+    color: #8b91dd;
+    border: 2px solid #8b91dd;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+    padding: 10px 40px;
+    height: auto;
+    position: inherit;
+}
+label.upload::before{
+    content: none;
+}
+input.upload {
+    display: none;
 }

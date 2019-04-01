@@ -19,6 +19,16 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>pages/index.xhtml</welcome-file>
     </welcome-file-list>
+     <!-- Login filter -->
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/pages/*</url-pattern>
+        <url-pattern>/login.xhtml</url-pattern>
+    </filter-mapping>
 </web-app>

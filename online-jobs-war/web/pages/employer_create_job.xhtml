@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="/templates/dashboard.xhtml">
+        <ui:param name = "headerTitle" value = "Welcome Name" />
+        <ui:define name="dashboard-content">
+
+
+            <div class="profile-title">
+                <h3>Creating a Job</h3>
+            </div>
+            <div class="profile-form-edit">
+                <form>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            <span class="pf-title">Project Title</span>
+                            <div class="pf-field">
+                                <input type="text" placeholder=""/>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <span class="pf-title">Keywords</span>
+                            <div class="pf-field">
+                                <input type="text" placeholder=""/>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <span class="pf-title">Expected Job Duration</span>
+                            <div class="dropdown-field">
+                                <select data-placeholder="Please Select Specialism" class="chosen" style="display: none;">
+                                    <option selected="selected">&lt; 2 hours</option>
+                                    <option>&lt; 24 hours</option>
+                                    <option>24+ hours</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                            <span class="pf-title">Job Description</span>
+                            <div class="pf-field">
+                                <textarea>Spent several years working on sheep on Wall 
+Street. Had moderate success investing in Yugos on Wall Street. Managed a
+ small team buying and selling pogo sticks for farmers. Spent several 
+years licensing licorice in West Palm Beach, FL. Developed severalnew 
+methods for working with banjos in the aftermarket. Spent a weekend 
+importing banjos in West Palm Beach, FL.In this position, the Software 
+Engineer ollaborates with Evention's Development team to continuously 
+enhance our current software solutions as well as create new solutions 
+to eliminate the back-office operations and management challenges 
+present</textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <button type="submit">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>
+

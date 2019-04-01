@@ -7,20 +7,19 @@ package beans;
 
 import java.util.List;
 import javax.ejb.Local;
-import model.Freelancer;
 import model.FreelancerSkill;
+import model.User;
 
 /**
  *
  * @author caio
  */
 @Local
-public interface FreelancersBeanLocal {
-    List<Freelancer> getFreelancersLimit(int start, int quant);
+public interface UsersBeanLocal {
 
-    Freelancer getFreelancerById(int id);
+    User getUser(String username, String password);
 
-    List<FreelancerSkill> getFreelancerSkillsById(int id);
+    User updateUser(User u);
+
     
-    void updateFreelancerSkills(int id, List<FreelancerSkill> skills);
 }

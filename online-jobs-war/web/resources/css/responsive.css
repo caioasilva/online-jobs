@@ -393,7 +393,7 @@ select {
     text-align: center;
 }
 .inner-header {
-    padding-top: 100px;
+    padding-top: 80px;
 }
 .inner-header.wform .job-field {
     
@@ -508,7 +508,7 @@ select {
     display: inline-block;
 }
 .inner-header {
-    padding-top: 150px;
+    padding-top: 40px;
 }
 .blogpost.style2 {
     display: inline;

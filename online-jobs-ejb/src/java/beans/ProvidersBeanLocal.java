@@ -5,19 +5,14 @@
  */
 package beans;
 
-import java.util.List;
 import javax.ejb.Local;
-import model.Job;
+import model.Provider;
 
 /**
  *
  * @author caio
  */
 @Local
-public interface JobsBeanLocal {
-    List<Job> getAllJobs();
-    List<Job> getJobsDescLimit(int start, int quant);
-    Job getJobById(int id);
-
-    List<Job> getJobsByKeywords(List<String> keywords);
+public interface ProvidersBeanLocal {
+    public Provider getProviderById(int id);
 }
