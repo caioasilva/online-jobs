@@ -8,7 +8,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/templates/dashboard.xhtml">
         <ui:define name="dashboard-menu">
-            <ui:include src="/snippets/candidate_menu.xhtml"/>
+            <ui:include src="/snippets/candidate_dashboard_menu.xhtml"/>
         </ui:define>
         <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.freelancer.name}" />
         <ui:define name="dashboard-content">
