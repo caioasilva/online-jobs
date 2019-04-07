@@ -180,4 +180,47 @@ public class JobsBean implements JobsBeanLocal {
         return ((Provider) q.getSingleResult()).getJobCollection();
     }
 
+    @Override
+    public boolean hasFreelancerOfferedToJob(int freelancerId, int jobId) {
+        em.flush();
+        Query q = em.createNamedQuery("JobOffer.findByJobId&FreelancerId");
+        q.setParameter("freelancerId", freelancerId);
+        q.setParameter("jobId", jobId);
+        try {
+            JobOffer r = (JobOffer) q.getSingleResult();
+            if (r != null) {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public void offerToJob(int freelancerId, int jobId) {
+        JobOffer jb = new JobOffer(jobId, freelancerId);
+        jb.setStatus("waiting");
+        em.persist(jb);
+    }
+    
+    @Override
+    public void revokeOfferToJob(int freelancerId, int jobId) {
+        Query q = em.createNamedQuery("JobOffer.findByJobId&FreelancerId");
+        q.setParameter("freelancerId", freelancerId);
+        q.setParameter("jobId", jobId);
+        try {
+            JobOffer r = (JobOffer) q.getSingleResult();
+            if (r.getStatus().compareTo("accepted") != 0) {
+                em.remove(r);
+            }else{
+                System.err.println("Not possible to remove, it is already accepted");
+            }
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+
+    }
+    
+    
 }

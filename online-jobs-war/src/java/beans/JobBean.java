@@ -26,11 +26,11 @@ import model.JobKeyword;
  */
 @Named(value = "jobBean")
 @SessionScoped
-public class JobBean implements Serializable{
+public class JobBean implements Serializable {
 
     @EJB
     private JobsBeanLocal jobsBean;
-    
+
     @Inject
     LoginBean loginBean;
 
@@ -43,67 +43,66 @@ public class JobBean implements Serializable{
     public int getId() {
         return id;
     }
-    
+
     private Job job = new Job();
 
 //    public void setJob(Job job) {
 //        this.job = job;
 //    }
-
     public Job getJob() {
         return job;
     }
- 
+
     /**
      * Creates a new instance of JobBean
      */
     public JobBean() {
     }
-    
+
     public void init() {
 //        user = userService.find(id);
         job = jobsBean.getJobById(id);
-        
+
     }
-    
-    public void newJob(){
+
+    public void newJob() {
         job = new Job();
         id = 0;
     }
-    
-    public List<Job> getRecentJobs(){
+
+    public List<Job> getRecentJobs() {
         List<Job> l = jobsBean.getJobsDescLimit(0, 10);
         return l;
     }
-    
-    public String createJob(){
+
+    public String createJob() {
         job.setProviderId(loginBean.getUser().getProvider());
         id = jobsBean.createJob(job);
         jobsBean.updateJobKeywords(id, generateKeywordsList(keywordsString));
         return "/pages/employer-jobs.xhtml?faces-redirect=true";
     }
-    
-    public String updateJob(){
+
+    public String updateJob() {
         jobsBean.updateJob(job);
         jobsBean.updateJobKeywords(id, generateKeywordsList(keywordsString));
         loginBean.refresh();
         return "/pages/employer-jobs.xhtml?faces-redirect=true";
     }
-    
+
     public String getKeywordsString() {
         List<JobKeyword> skills = jobsBean.getKeywordsById(id);
         keywordsString = skills.stream().map((f) -> f.getJobKeywordPK().getKeyword()).collect(Collectors.joining(","));
         return keywordsString;
     }
-    
+
     private List<JobKeyword> keywords_list;
-    
+
     private String keywordsString;
 
     public void setKeywordsString(String keywordsString) {
         this.keywordsString = keywordsString;
     }
-    
+
     public List<JobKeyword> generateKeywordsList(String keywords) {
         String[] sk = keywords.split(",");
         keywords_list = new ArrayList();
@@ -114,22 +113,36 @@ public class JobBean implements Serializable{
         return keywords_list;
 //        freelancersBean.updateFreelancerSkills(user.getFreelancer().getId(), l_skills);
     }
-    
-    public void deleteJob(int id){
+
+    public void deleteJob(int id) {
         jobsBean.deleteJob(id);
         loginBean.refresh();
-        
+
     }
-    
-    public void deleteJobAdmin(int id){
+
+    public void deleteJobAdmin(int id) {
         jobsBean.deleteJobAdmin(id);
         loginBean.refresh();
     }
-    
-    public String acceptCandidate(int jobId, int candidateId){
+
+    public String acceptCandidate(int jobId, int candidateId) {
         jobsBean.acceptFreelancer(jobId, candidateId);
         loginBean.refresh();
         return "/pages/employer-jobs.xhtml?faces-redirect=true";
     }
-    
+
+    public void apply(int jobId) {
+        if (!jobsBean.hasFreelancerOfferedToJob(loginBean.getUser().getFreelancer().getId(), jobId)) {
+            jobsBean.offerToJob(loginBean.getUser().getFreelancer().getId(), jobId);
+        }
+    }
+
+    public void revoke(int jobId) {
+        jobsBean.revokeOfferToJob(loginBean.getUser().getFreelancer().getId(), jobId);
+    }
+
+    public boolean hasFreelancerOfferedToJob(int freelancerId, int jobId) {
+        return jobsBean.hasFreelancerOfferedToJob(freelancerId, jobId);
+    }
+
 }

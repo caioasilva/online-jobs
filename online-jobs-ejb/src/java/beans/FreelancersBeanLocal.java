@@ -26,4 +26,5 @@ public interface FreelancersBeanLocal {
     void updateFreelancerSkills(int id, List<FreelancerSkill> skills);
     
     BigDecimal getSumByFreelancerId(int FreelancerId);
+   
 }

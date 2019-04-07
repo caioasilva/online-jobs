@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import model.Freelancer;
 import model.FreelancerSkill;
+import model.JobOffer;
 
 /**
  *
@@ -76,5 +77,6 @@ public class FreelancersBean implements FreelancersBeanLocal {
         q.setParameter("freelancerId", FreelancerId);
         return (BigDecimal)q.getSingleResult();
     }
-
+    
+    
 }

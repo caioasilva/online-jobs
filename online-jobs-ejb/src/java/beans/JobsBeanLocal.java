@@ -42,4 +42,10 @@ public interface JobsBeanLocal {
     List<Job> getAllOpenJobs();
     
     public void deleteJobAdmin(int id);
+    
+    boolean hasFreelancerOfferedToJob(int freelancerId, int jobId);
+
+    void offerToJob(int freelancerId, int jobId);
+    
+    void revokeOfferToJob(int freelancerId, int jobId);
 }
