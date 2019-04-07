@@ -5,9 +5,12 @@
  */
 package beans;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Local;
+import model.Provider;
 import model.Job;
+import model.JobKeyword;
 
 /**
  *
@@ -20,4 +23,12 @@ public interface JobsBeanLocal {
     Job getJobById(int id);
 
     List<Job> getJobsByKeywords(List<String> keywords);
+
+    int createJob(Job j);
+    
+    List<JobKeyword> getKeywordsById(int id);
+    
+    void updateJobKeywords(int id, List<JobKeyword> keys);
+
+    Job updateJob(Job job);
 }

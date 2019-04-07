@@ -42,7 +42,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Job.findByStatus", query = "SELECT j FROM Job j WHERE j.status = :status")
     , @NamedQuery(name = "Job.findByPayment", query = "SELECT j FROM Job j WHERE j.payment = :payment")
     , @NamedQuery(name = "Job.findByCreationDate", query = "SELECT j FROM Job j WHERE j.creationDate = :creationDate")
-    , @NamedQuery(name = "Job.findAllOrderByDate", query = "SELECT j FROM Job j ORDER BY j.creationDate DESC")})
+    , @NamedQuery(name = "Job.findAllOrderByDate", query = "SELECT j FROM Job j ORDER BY j.creationDate DESC")
+    , @NamedQuery(name = "Job.getHighestID", query = "SELECT MAX(j.id) from Job j")})
 public class Job implements Serializable {
 
     private static final long serialVersionUID = 1L;

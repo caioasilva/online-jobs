@@ -32,7 +32,7 @@
                         <ui:include src="/snippets/candidate_menu.xhtml"/>
                     </c:if>
                     <c:if test="${loginBean.user.type == 'p'}">
-                        <ui:include src="/snippets/provider_menu.xhtml"/>
+                        <ui:include src="/snippets/employer_menu.xhtml"/>
                     </c:if>
                     <c:if test="${loginBean.user.type == 'a'}">
                         <ui:include src="/snippets/admin_menu.xhtml"/>
@@ -67,7 +67,7 @@
                             <ui:include src="/snippets/candidate_menu.xhtml"/>
                         </c:if>
                         <c:if test="${loginBean.user.type == 'p'}">
-                            <ui:include src="/snippets/provider_menu.xhtml"/>
+                            <ui:include src="/snippets/employer_menu.xhtml"/>
                         </c:if>
                         <c:if test="${loginBean.user.type == 'a'}">
                             <ui:include src="/snippets/admin_menu.xhtml"/>

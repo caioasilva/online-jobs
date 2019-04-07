@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/templates/dashboard.xhtml">
+        <f:metadata>
+            <f:event listener="#{jobBean.newJob()}" type="preRenderView"/>
+        </f:metadata>
+        <ui:define name="dashboard-menu">
+            <ui:include src="/snippets/employer_dashboard_menu.xhtml"/>
+        </ui:define>
+        <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.provider.name}" />
+        <ui:define name="dashboard-content">
+
+
+            <div class="profile-title">
+                <h3>Creating a Job</h3>
+            </div>
+            <div class="profile-form-edit">
+                <h:messages />
+
+                <h:form>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <span class="pf-title">Job Title</span>
+                            <div class="pf-field">
+                                <h:inputText label="Job Title" value="#{jobBean.job.title}">
+                                    <f:validateLength minimum="10"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <span class="pf-title">Keywords</span>
+                            <div class="">
+                                <h:inputText label="Keywords" value="#{jobBean.keywordsString}">
+                                    <f:passThroughAttribute name="data-role" value="tagsinput"/>
+                                    <f:validateLength minimum="2"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <span class="pf-title">Payment €</span>
+                            <div class="pf-field">
+                                <h:inputText value="#{jobBean.job.payment}" label="Payment" >
+                                    <f:validateDoubleRange minimum="0.0" />
+                                </h:inputText>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <span class="pf-title">Job Description</span>
+                            <div class="pf-field">
+                                <h:inputTextarea label="Description" value="#{jobBean.job.description}"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-12"  style="margin-bottom: 2em;">
+                            <button type="submit" jsf:action="#{jobBean.createJob()}">Create Job</button>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+

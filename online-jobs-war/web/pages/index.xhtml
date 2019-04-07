@@ -59,7 +59,7 @@
                                     <span>Jobs recently added by our providers!</span>
                                 </div><!-- Heading -->
                                 <div class="job-listings-sec">
-                                    <ui:repeat var="item" value="#{indexBean.recentJobs}">
+                                    <ui:repeat var="item" value="#{jobBean.recentJobs}">
                                         <h:link outcome="job">
                                             <f:param name="id" value="#{item.id}" />
                                             <div class="job-listing">
@@ -103,7 +103,7 @@
                                     <span>Some people that just joined our huge database!</span>
                                 </div><!-- Heading -->
                                 <div class="reviews-car row" id="reviews-carousel" role="toolbar">
-                                    <c:forEach var="item" items="#{indexBean.someFreelancers}">
+                                    <c:forEach var="item" items="#{candidateBean.someCandidates}">
 
                                         <div class="col-lg-3 col-md-6 col-sm-12">
                                             <h:link outcome="candidate">
