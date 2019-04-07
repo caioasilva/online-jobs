@@ -12,8 +12,10 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.ManagedBean;
@@ -27,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import model.Freelancer;
 import model.FreelancerSkill;
+import model.Payments;
 import model.Provider;
 import model.User;
 import sun.misc.IOUtils;
@@ -155,7 +158,10 @@ public class LoginBean implements Serializable {
                 e.printStackTrace();
             }
         }
-
+    }
+    
+    public BigDecimal sumPayments(){
+        return freelancersBean.getSumByFreelancerId(user.getFreelancer().getId());
     }
 
 }

@@ -121,6 +121,11 @@ public class JobBean implements Serializable{
         
     }
     
+    public void deleteJobAdmin(int id){
+        jobsBean.deleteJobAdmin(id);
+        loginBean.refresh();
+    }
+    
     public String acceptCandidate(int jobId, int candidateId){
         jobsBean.acceptFreelancer(jobId, candidateId);
         loginBean.refresh();

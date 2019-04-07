@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Payments.findAll", query = "SELECT p FROM Payments p")
     , @NamedQuery(name = "Payments.findById", query = "SELECT p FROM Payments p WHERE p.id = :id")
     , @NamedQuery(name = "Payments.findByAmount", query = "SELECT p FROM Payments p WHERE p.amount = :amount")
-    , @NamedQuery(name = "Payments.getHighestID", query = "SELECT MAX(j.id) from Payments j")})
+    , @NamedQuery(name = "Payments.getHighestID", query = "SELECT MAX(j.id) from Payments j")
+    , @NamedQuery(name = "Payments.getSumByFreelancerId", query = "SELECT SUM(j.amount) from Payments j WHERE j.freelancerId.id = :freelancerId")})
 public class Payments implements Serializable {
 
     @JoinColumn(name = "PROVIDER_ID", referencedColumnName = "ID")

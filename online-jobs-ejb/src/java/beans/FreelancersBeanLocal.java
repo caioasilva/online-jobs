@@ -5,6 +5,7 @@
  */
 package beans;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Local;
 import model.Freelancer;
@@ -23,4 +24,6 @@ public interface FreelancersBeanLocal {
     List<FreelancerSkill> getFreelancerSkillsById(int id);
     
     void updateFreelancerSkills(int id, List<FreelancerSkill> skills);
+    
+    BigDecimal getSumByFreelancerId(int FreelancerId);
 }

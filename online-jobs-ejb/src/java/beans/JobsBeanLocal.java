@@ -40,4 +40,6 @@ public interface JobsBeanLocal {
     Collection<Job> getJobsByProviderId(int providerId);
     
     List<Job> getAllOpenJobs();
+    
+    public void deleteJobAdmin(int id);
 }
