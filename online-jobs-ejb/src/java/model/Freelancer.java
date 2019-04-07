@@ -189,13 +189,6 @@ public class Freelancer implements Serializable {
         this.date = date;
     }
 
-    public byte [] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
     @XmlTransient
     public Collection<Payments> getPaymentsCollection() {
@@ -204,6 +197,14 @@ public class Freelancer implements Serializable {
 
     public void setPaymentsCollection(Collection<Payments> paymentsCollection) {
         this.paymentsCollection = paymentsCollection;
+    }
+
+    public byte [] getImage() {
+        return image;
+    }
+
+    public void setImage(byte [] image) {
+        this.image = image;
     }
     
 }

@@ -86,6 +86,7 @@ public class JobBean implements Serializable{
     public String updateJob(){
         jobsBean.updateJob(job);
         jobsBean.updateJobKeywords(id, generateKeywordsList(keywordsString));
+        loginBean.refresh();
         return "/pages/employer-jobs.xhtml?faces-redirect=true";
     }
     
@@ -116,10 +117,13 @@ public class JobBean implements Serializable{
     
     public void deleteJob(int id){
         jobsBean.deleteJob(id);
+        loginBean.refresh();
+        
     }
     
     public String acceptCandidate(int jobId, int candidateId){
         jobsBean.acceptFreelancer(jobId, candidateId);
+        loginBean.refresh();
         return "/pages/employer-jobs.xhtml?faces-redirect=true";
     }
     

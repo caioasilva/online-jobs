@@ -125,7 +125,7 @@ public class LoginBean implements Serializable {
     
     public void refresh(){
         if (loggedIn)
-            user = usersBean.getUser(user.getId());
+            this.user = usersBean.getUser(user.getId());
     }
 
     public String logout() {

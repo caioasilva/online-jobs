@@ -7,9 +7,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/templates/dashboard.xhtml">
-<!--        <f:metadata>
+        <f:metadata>
             <f:event listener="#{loginBean.refresh()}" type="preRenderView"/>
-        </f:metadata>-->
+        </f:metadata>
         <ui:define name="dashboard-menu">
             <ui:include src="/snippets/employer_dashboard_menu.xhtml"/>
         </ui:define>
@@ -78,7 +78,6 @@
                                     </h:link>
                                 </li>
                                 <h:panelGroup rendered="${item.status eq 'open'}">
-                               
                                     <li><span>Edit</span>
                                         <h:link outcome="employer-edit-job">
                                             <f:param name="id" value="#{item.id}" />

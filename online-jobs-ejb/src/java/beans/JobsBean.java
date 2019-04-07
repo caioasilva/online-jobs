@@ -138,6 +138,7 @@ public class JobsBean implements JobsBeanLocal {
             Payments pay = new Payments(id);
             pay.setFreelancerId(offer.getFreelancer());
             pay.setJobId(offer.getJob());
+            pay.setProviderId(offer.getJob().getProviderId());
             pay.setAmount(offer.getJob().getPayment());
             pay.setDate(new Date());
             em.merge(offer);

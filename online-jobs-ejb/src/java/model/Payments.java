@@ -36,6 +36,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Payments.getHighestID", query = "SELECT MAX(j.id) from Payments j")})
 public class Payments implements Serializable {
 
+    @JoinColumn(name = "PROVIDER_ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Provider providerId;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATE")
@@ -135,6 +139,14 @@ public class Payments implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Provider getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(Provider providerId) {
+        this.providerId = providerId;
     }
     
 }

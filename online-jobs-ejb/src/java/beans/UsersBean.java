@@ -7,6 +7,7 @@ package beans;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -35,6 +36,7 @@ public class UsersBean implements UsersBeanLocal {
         Query q = em.createNamedQuery("User.findByUsernamePassword");
         q.setParameter("username", username);
         q.setParameter("password", password);
+        q.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         try{
             return (User) q.getSingleResult();
         }catch(Exception e){
@@ -53,6 +55,7 @@ public class UsersBean implements UsersBeanLocal {
     @Override
     public User getUser(int id) {
         Query q = em.createNamedQuery("User.findById");
+        q.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         q.setParameter("id", id);
         try{
             return (User) q.getSingleResult();

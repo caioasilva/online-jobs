@@ -5,18 +5,16 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ul>
-        <li><h:link outcome = "/pages/candidate">
-                        <f:param name="id" value="#{loginBean.user.freelancer.id}"/>
-                        View My Profile
-                    </h:link>
+        <li>
+            <h:link outcome = "/pages/candidate">
+                <f:param name="id" value="#{loginBean.user.freelancer.id}"/>
+                <i class="fa fa-user"></i>View My Profile
+            </h:link>
         </li>
         <li><h:link outcome = "/pages/candidate-edit-profile"><i class="fa fa-file-text"></i>Edit Profile</h:link></li>
-        <li><a href="candidates_my_resume.html" title=""><i class="fa fa-briefcase"></i>My Resume</a></li>
-        <li><a href="candidates_shortlist.html" title=""><i class="fa fa-money"></i>Shorlisted Job</a></li>
-        <li><a href="candidates_applied_jobs.html" title=""><i class="fa fa-paper-plane"></i>Applied Job</a></li>
-        <li><a href="candidates_job_alert.html" title=""><i class="fa fa-user"></i>Job Alerts</a></li>
-        <li><a href="candidates_cv_cover_letter.html" title=""><i class="fa fa-file-text"></i>Cv Cover Letter</a></li>
-        <li><h:link outcome = "/pages/change-password"><i class="fa fa-flash"></i>Change Password</h:link></li>
+        <li><h:link outcome = "/pages/candidate-payments"><i class="fa fa-money"></i>Payments</h:link></li>
+        <li><a href="candidates_applied_jobs.html" title=""><i class="fa fa-paper-plane"></i>Applied Jobs</a></li>
+        <!--<li><h:link outcome = "/pages/change-password"><i class="fa fa-flash"></i>Change Password</h:link></li>-->
         <!--<li><a href="#" title=""><i class="fa fa-unlink"></i>Logout</a></li>-->
     </ul>
 

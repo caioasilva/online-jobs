@@ -45,6 +45,8 @@ public class Provider implements Serializable {
     @Lob
     @Column(name = "IMAGE")
     private byte[] image;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "providerId")
+    private Collection<Payments> paymentsCollection;
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATE")
@@ -159,12 +161,21 @@ public class Provider implements Serializable {
         this.date = date;
     }
 
-    public byte [] getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(byte [] image) {
+    public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    @XmlTransient
+    public Collection<Payments> getPaymentsCollection() {
+        return paymentsCollection;
+    }
+
+    public void setPaymentsCollection(Collection<Payments> paymentsCollection) {
+        this.paymentsCollection = paymentsCollection;
     }
     
 }
