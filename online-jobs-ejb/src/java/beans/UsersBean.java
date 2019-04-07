@@ -57,11 +57,10 @@ public class UsersBean implements UsersBeanLocal {
         Query q = em.createNamedQuery("User.findById");
         q.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         q.setParameter("id", id);
-        try{
-            return (User) q.getSingleResult();
-        }catch(Exception e){
-            return null;
-        }
+        User r = (User) q.getSingleResult();
+        em.refresh(r);
+        return r;
+
     }
 
 }
