@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -33,6 +34,13 @@ public class JobsBean implements JobsBeanLocal {
         Query q = em.createNamedQuery("Job.findAll");
         return q.getResultList();
     }
+    
+    @Override
+    public List<Job> getAllOpenJobs(){
+        Query q = em.createNamedQuery("Job.findAllOrderByDate");
+        return q.getResultList();
+    }
+    
     
     @Override
     public List<Job> getJobsDescLimit(int start, int quant){
@@ -68,13 +76,14 @@ public class JobsBean implements JobsBeanLocal {
 
     @Override
     public List<Job> getJobsByKeywords(List<String> keywords) {
-        String query = "SELECT j FROM Job j WHERE j.id IN (SELECT k.jobKeywordPK.jobId FROM JobKeyword k WHERE ";
+        String query = "SELECT j FROM Job j WHERE j.status = 'open' AND j.id IN (SELECT k.jobKeywordPK.jobId FROM JobKeyword k WHERE ";
         for (String keyword: keywords){
             query+=" lower(k.jobKeywordPK.keyword) LIKE lower('"+keyword+"') OR";
         }
         query = query.substring(0,query.length()-2);
-        query+=" GROUP BY k.jobKeywordPK.jobId) AND j.status = 'open'";
+        query+=" GROUP BY k.jobKeywordPK.jobId)";
         Query q = em.createQuery(query);
+        q.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         return q.getResultList();
     }
 
@@ -119,10 +128,15 @@ public class JobsBean implements JobsBeanLocal {
 
     @Override
     public void deleteJob(int id) {
-        Query q = em.createNamedQuery("Job.deleteById");
-        q.setParameter("id", id);
-        q.executeUpdate();
-        em.flush();
+        Query q1 = em.createNamedQuery("Job.findById");
+        q1.setParameter("id", id);
+        Job j = (Job)q1.getSingleResult();
+        if (j.getStatus().compareTo("open")==0){
+            Query q = em.createNamedQuery("Job.deleteById");
+            q.setParameter("id", id);
+            q.executeUpdate();
+            em.flush();
+        }
     }
 
     @Override

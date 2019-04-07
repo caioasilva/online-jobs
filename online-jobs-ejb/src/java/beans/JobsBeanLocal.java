@@ -38,4 +38,6 @@ public interface JobsBeanLocal {
     void acceptFreelancer(int jobId, int freelancerId);
 
     Collection<Job> getJobsByProviderId(int providerId);
+    
+    List<Job> getAllOpenJobs();
 }
