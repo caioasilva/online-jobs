@@ -122,6 +122,11 @@ public class LoginBean implements Serializable {
         }
 
     }
+    
+    public void refresh(){
+        if (loggedIn)
+            user = usersBean.getUser(user.getId());
+    }
 
     public String logout() {
         // Set the paremeter indicating that user is logged in to false

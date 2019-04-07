@@ -44,7 +44,7 @@ public class Provider implements Serializable {
 
     @Lob
     @Column(name = "IMAGE")
-    private byte [] image;
+    private byte[] image;
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATE")
@@ -150,13 +150,6 @@ public class Provider implements Serializable {
         
     }
 
-    public byte [] getImage() {
-        return image;
-    }
-
-    public void setImage(byte [] image) {
-        this.image = image;
-    }
 
     public Date getDate() {
         return date;
@@ -164,6 +157,14 @@ public class Provider implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public byte [] getImage() {
+        return image;
+    }
+
+    public void setImage(byte [] image) {
+        this.image = image;
     }
     
 }

@@ -8,6 +8,7 @@ package beans;
 import beans.JobsBeanLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
@@ -45,14 +46,14 @@ public class JobBean implements Serializable{
     
     private Job job = new Job();
 
-    public void setJob(Job job) {
-        this.job = job;
-    }
+//    public void setJob(Job job) {
+//        this.job = job;
+//    }
 
     public Job getJob() {
         return job;
     }
-    
+ 
     /**
      * Creates a new instance of JobBean
      */
@@ -79,14 +80,12 @@ public class JobBean implements Serializable{
         job.setProviderId(loginBean.getUser().getProvider());
         id = jobsBean.createJob(job);
         jobsBean.updateJobKeywords(id, generateKeywordsList(keywordsString));
-        
         return "/pages/employer-jobs.xhtml?faces-redirect=true";
     }
     
     public String updateJob(){
         jobsBean.updateJob(job);
         jobsBean.updateJobKeywords(id, generateKeywordsList(keywordsString));
-
         return "/pages/employer-jobs.xhtml?faces-redirect=true";
     }
     
@@ -113,6 +112,15 @@ public class JobBean implements Serializable{
         }
         return keywords_list;
 //        freelancersBean.updateFreelancerSkills(user.getFreelancer().getId(), l_skills);
+    }
+    
+    public void deleteJob(int id){
+        jobsBean.deleteJob(id);
+    }
+    
+    public String acceptCandidate(int jobId, int candidateId){
+        jobsBean.acceptFreelancer(jobId, candidateId);
+        return "/pages/employer-jobs.xhtml?faces-redirect=true";
     }
     
 }

@@ -47,6 +47,8 @@ public class Freelancer implements Serializable {
     @Lob
     @Column(name = "IMAGE")
     private byte[] image;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "freelancerId")
+    private Collection<Payments> paymentsCollection;
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATE")
@@ -178,13 +180,6 @@ public class Freelancer implements Serializable {
         
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
     public Date getDate() {
         return date;
@@ -192,6 +187,23 @@ public class Freelancer implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public byte [] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    @XmlTransient
+    public Collection<Payments> getPaymentsCollection() {
+        return paymentsCollection;
+    }
+
+    public void setPaymentsCollection(Collection<Payments> paymentsCollection) {
+        this.paymentsCollection = paymentsCollection;
     }
     
 }

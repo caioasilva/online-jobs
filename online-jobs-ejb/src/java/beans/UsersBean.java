@@ -42,15 +42,23 @@ public class UsersBean implements UsersBeanLocal {
         }
 
     }
+    
+    
 
     @Override
     public User updateUser(User u) {
         return em.merge(u);
     }
 
-    
-    
-    
-    
-    
+    @Override
+    public User getUser(int id) {
+        Query q = em.createNamedQuery("User.findById");
+        q.setParameter("id", id);
+        try{
+            return (User) q.getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
+
 }

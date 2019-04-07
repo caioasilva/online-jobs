@@ -6,6 +6,7 @@
 package beans;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 import model.Provider;
@@ -31,4 +32,10 @@ public interface JobsBeanLocal {
     void updateJobKeywords(int id, List<JobKeyword> keys);
 
     Job updateJob(Job job);
+
+    void deleteJob(int id);
+
+    void acceptFreelancer(int jobId, int freelancerId);
+
+    Collection<Job> getJobsByProviderId(int providerId);
 }

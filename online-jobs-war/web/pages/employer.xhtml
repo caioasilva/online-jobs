@@ -25,8 +25,9 @@
                                                     <div class="job-thumb"> <img src="#{providerBean.provider.imageBase64}"/></div>
                                                     <div class="job-single-info3">
                                                         <h3>#{providerBean.provider.name}</h3>
-                                                        <!--<span><i class="fa fa-map-marker"></i>Sacramento, California</span><span class="job-is ft">Full time</span>-->
+                                                        
                                                         <ul class="tags-jobs">
+                                                            <li><i class="fa fa-map-marker"></i>ID: #{providerBean.id}</li>
                                                             <li><i class="fa fa-file-text"></i> Total Jobs: #{providerBean.provider.jobCollection.size()}</li>
                                                             <li><i class="fa fa-calendar-o"></i> Join Date: #{providerBean.provider.date}</li>
                                                             <!--<li><i class="fa fa-eye"></i> Views 5683</li>-->

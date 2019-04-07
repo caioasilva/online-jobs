@@ -65,6 +65,7 @@ public class FreelancersBean implements FreelancersBeanLocal {
         for (FreelancerSkill skill:skills){
             em.persist(skill);
         }
+        em.flush();
         
     }
 

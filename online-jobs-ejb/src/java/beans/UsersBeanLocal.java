@@ -21,5 +21,7 @@ public interface UsersBeanLocal {
 
     User updateUser(User u);
 
+    User getUser(int id);
+
     
 }

@@ -43,8 +43,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Job.findByPayment", query = "SELECT j FROM Job j WHERE j.payment = :payment")
     , @NamedQuery(name = "Job.findByCreationDate", query = "SELECT j FROM Job j WHERE j.creationDate = :creationDate")
     , @NamedQuery(name = "Job.findAllOrderByDate", query = "SELECT j FROM Job j ORDER BY j.creationDate DESC")
-    , @NamedQuery(name = "Job.getHighestID", query = "SELECT MAX(j.id) from Job j")})
+    , @NamedQuery(name = "Job.getHighestID", query = "SELECT MAX(j.id) from Job j")
+    , @NamedQuery(name = "Job.deleteById", query = "DELETE FROM Job j WHERE j.id = :id")})
 public class Job implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobId")
+    private Collection<Payments> paymentsCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -206,6 +210,15 @@ public class Job implements Serializable {
     @Override
     public String toString() {
         return "model.Job[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Payments> getPaymentsCollection() {
+        return paymentsCollection;
+    }
+
+    public void setPaymentsCollection(Collection<Payments> paymentsCollection) {
+        this.paymentsCollection = paymentsCollection;
     }
     
 }

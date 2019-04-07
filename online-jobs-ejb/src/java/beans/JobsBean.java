@@ -5,7 +5,7 @@
  */
 package beans;
 
-import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -15,6 +15,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import model.Job;
 import model.JobKeyword;
+import model.JobOffer;
+import model.Payments;
 import model.Provider;
 
 /**
@@ -71,7 +73,7 @@ public class JobsBean implements JobsBeanLocal {
             query+=" lower(k.jobKeywordPK.keyword) LIKE lower('"+keyword+"') OR";
         }
         query = query.substring(0,query.length()-2);
-        query+=" GROUP BY k.jobKeywordPK.jobId)";
+        query+=" GROUP BY k.jobKeywordPK.jobId) AND j.status = 'open'";
         Query q = em.createQuery(query);
         return q.getResultList();
     }
@@ -85,6 +87,7 @@ public class JobsBean implements JobsBeanLocal {
         j.setCreationDate(new Date());
         
         persist(j);
+        em.flush();
         return id;
     }
     
@@ -104,13 +107,55 @@ public class JobsBean implements JobsBeanLocal {
         for (JobKeyword jk:keys){
             em.persist(jk);
         }
+        em.flush();
         
     }
 
     @Override
     public Job updateJob(Job job) {
         return em.merge(job);
+        
     }
+
+    @Override
+    public void deleteJob(int id) {
+        Query q = em.createNamedQuery("Job.deleteById");
+        q.setParameter("id", id);
+        q.executeUpdate();
+        em.flush();
+    }
+
+    @Override
+    public void acceptFreelancer(int jobId, int freelancerId) {
+        Query q = em.createNamedQuery("JobOffer.findByJobId&FreelancerId");
+        q.setParameter("jobId", jobId);
+        q.setParameter("freelancerId", freelancerId);
+
+            JobOffer offer = (JobOffer) q.getSingleResult();
+            offer.setStatus("accepted");
+            offer.getJob().setStatus("closed");
+            int id = ((Integer) em.createNamedQuery("Payments.getHighestID").getSingleResult()) + 1;
+            Payments pay = new Payments(id);
+            pay.setFreelancerId(offer.getFreelancer());
+            pay.setJobId(offer.getJob());
+            pay.setAmount(offer.getJob().getPayment());
+            pay.setDate(new Date());
+            em.merge(offer);
+            em.persist(pay);
+            em.flush();
+//        }catch(Exception e){
+//            System.err.println(e.toString());
+//        }
+    }
+
+    @Override
+    public Collection<Job> getJobsByProviderId(int providerId) {
+        em.flush();
+        Query q = em.createNamedQuery("Provider.findById");
+        q.setParameter("id", providerId);
+        return ((Provider)q.getSingleResult()).getJobCollection();
+    }
+    
     
     
 

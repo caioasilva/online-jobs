@@ -204,3 +204,18 @@ ALTER TABLE logs
 --
 ALTER TABLE providers
   ADD CONSTRAINT fk_providers_user_id FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE;
+
+CREATE TABLE payments (
+  id integer NOT NULL,
+  freelancer_id integer NOT NULL,
+  job_id integer NOT NULL,
+  amount decimal(10,2) NOT NULL DEFAULT 0.00
+);
+
+ALTER TABLE payments
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE payments
+  ADD CONSTRAINT fk_payments_freelancer_id FOREIGN KEY (freelancer_id) REFERENCES freelancers (id) ON DELETE CASCADE;
+ALTER TABLE payments 
+  ADD CONSTRAINT fk_payments_job_id FOREIGN KEY (job_id) REFERENCES jobs (id) ON DELETE CASCADE;
