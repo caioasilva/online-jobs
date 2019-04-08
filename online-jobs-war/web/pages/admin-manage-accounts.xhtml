@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/templates/dashboard.xhtml">
+        <ui:define name="dashboard-menu">
+            <ui:include src="/snippets/admin_dashboard_menu.xhtml"/>
+        </ui:define>
+        <ui:param name = "headerTitle" value = "Welcome Admin" />
+        <ui:define name="dashboard-content">
+            <div class="manage-jobs-sec">
+                <h3>Manage Accounts</h3>
+                <div class="extra-job-info">
+                    <span><i class="fa fa-userst"></i><strong>#{adminBean.allUsers.size()}</strong> Users</span>
+                    <!--<span><i class="la la-users"></i><strong>18</strong> Active Jobs</span>-->
+                </div>
+                <h:form class="manage-jobs-sec">
+                    <h:dataTable value="#{adminBean.allUsers}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id" />
+                            </f:facet>
+                            <span>#{item.id}</span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="User Type" />
+                            </f:facet>
+                            <span>
+                                <h:panelGroup rendered="${item.type == 'p'}">
+                                    Provider
+                                </h:panelGroup>
+                                <h:panelGroup rendered="${item.type == 'f'}">
+                                    Candidate
+                                </h:panelGroup>
+                                <h:panelGroup rendered="${item.type == 'a'}">
+                                    Admin
+                                </h:panelGroup>
+                            </span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Name" />
+                            </f:facet>
+                            <div class="table-list-title">
+                                <h3> 
+                                    <h:panelGroup rendered="${item.type == 'p'}">
+                                        #{item.provider.name}
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="${item.type == 'f'}">
+                                        #{item.freelancer.name}
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="${item.type == 'a'}">
+                                        #{item.username}
+                                    </h:panelGroup>
+                                </h3>
+                            </div>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Username" />
+                            </f:facet>
+                            <span>#{item.username}</span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action" />
+                            </f:facet>
+                            <ul class="action_job">
+                                <li><span>Remove Account</span>
+                                    <h:commandLink action="#{adminBean.removeUser(item.id)}">
+                                        <f:param name="id" value="#{item.id}" />
+                                        <i class="fa fa-remove"></i>
+                                    </h:commandLink>
+                                </li>
+                            </ul>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+
+            </div>
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+

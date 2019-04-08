@@ -39,7 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Provider.findAll", query = "SELECT p FROM Provider p")
     , @NamedQuery(name = "Provider.findById", query = "SELECT p FROM Provider p WHERE p.id = :id")
-    , @NamedQuery(name = "Provider.findByName", query = "SELECT p FROM Provider p WHERE p.name = :name")})
+    , @NamedQuery(name = "Provider.findByName", query = "SELECT p FROM Provider p WHERE p.name = :name")
+    , @NamedQuery(name = "Provider.getHighestID", query = "SELECT MAX(p.id) from Provider p")})
 public class Provider implements Serializable {
 
     @Lob

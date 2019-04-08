@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/templates/dashboard.xhtml">
         <ui:define name="dashboard-menu">
             <ui:include src="/snippets/admin_dashboard_menu.xhtml"/>
@@ -18,26 +20,44 @@
                     <div class="col-lg-12">
                         <div class="account-popup-area signup-popup-box static">
                             <div class="account-popup">
+                                #{adminBean.msg}
                                 <span>Choose the user type below</span>
-                                <div class="select-user">
-                                    <span>Candidate</span>
-                                    <span>Employer</span>
-                                    <span>Admin</span>
-                                </div>
-                                <h:form>
+                                <h:form class="account-popup">
+                                    <div class="select-user">
+                                        <h:selectOneRadio value="#{adminBean.usertype}" label="User Type" required="true" class="select-user">
+                                            <f:selectItem itemValue = "f" itemLabel = "Candidate" />
+                                            <f:selectItem itemValue = "p" itemLabel = "Provider" />
+                                            <f:selectItem itemValue = "a" itemLabel = "Admin" />
+                                        </h:selectOneRadio>
+                                    </div>
                                     <div class="cfield">
-                                        <input type="text" placeholder="Name" />
+                                        <h:inputText label="Username" value="#{adminBean.username}">
+                                            <f:validateLength minimum="3"/>
+                                            <f:passThroughAttribute name="placeholder" value="Username" />
+                                        </h:inputText>
                                         <i class="fa fa-user"></i>
                                     </div>
                                     <div class="cfield">
-                                        <input type="text" placeholder="Username" />
-                                        <i class="fa fa-envelope-o"></i>
-                                    </div>
-                                    <div class="cfield">
-                                        <input type="password" placeholder="********" />
+                                        <h:inputText label="Password" value="#{adminBean.password}">
+                                            <f:validateLength minimum="3"/>
+                                            <f:passThroughAttribute name="placeholder" value="Password" />
+                                        </h:inputText>
                                         <i class="fa fa-key"></i>
                                     </div>
-                                    <button type="submit">Create Account</button>
+                                    <span>Fill the fields below if user type is Candidate or Provider</span>
+                                    <div class="cfield">
+                                        <h:inputText label="Name" value="#{adminBean.name}">
+                                            <f:passThroughAttribute name="placeholder" value="Name" />
+                                        </h:inputText>
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div class="cfield">
+                                        <h:inputText label="E-mail" value="#{adminBean.email}">
+                                            <f:passThroughAttribute name="placeholder" value="E-mail" />
+                                        </h:inputText>
+                                        <i class="fa fa-envelope-o"></i>
+                                    </div>
+                                    <button type="submit" jsf:action="#{adminBean.createUser()}">Create Account</button>
                                 </h:form>
 
                             </div>

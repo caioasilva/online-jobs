@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Freelancer.findById", query = "SELECT f FROM Freelancer f WHERE f.id = :id")
     , @NamedQuery(name = "Freelancer.findByName", query = "SELECT f FROM Freelancer f WHERE f.name = :name")
     , @NamedQuery(name = "Freelancer.findByEmail", query = "SELECT f FROM Freelancer f WHERE f.email = :email")
-    , @NamedQuery(name = "Freelancer.findByRole", query = "SELECT f FROM Freelancer f WHERE f.role = :role")})
+    , @NamedQuery(name = "Freelancer.findByRole", query = "SELECT f FROM Freelancer f WHERE f.role = :role")
+    , @NamedQuery(name = "Freelancer.getHighestID", query = "SELECT MAX(f.id) from Freelancer f")})
 public class Freelancer implements Serializable {
 
     @Lob

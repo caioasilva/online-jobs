@@ -23,5 +23,11 @@ public interface UsersBeanLocal {
 
     User getUser(int id);
 
+    User createUser(char type, String username, String password, String name, String email);
+
+    List<User> getAllUsers();
+
+    void removeUser(int id);
+
     
 }
