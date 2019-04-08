@@ -27,6 +27,7 @@ import javax.jms.Queue;
 import model.FreelancerSkill;
 import model.Job;
 import model.JobKeyword;
+import model.JobOffer;
 
 /**
  *
@@ -203,6 +204,10 @@ public class JobBean implements Serializable {
 
     private void sendJMSMessageToLogQueue(Message messageData) {
         context.createProducer().send(java_appLogQueue, messageData);
+    }
+    
+    public List<JobOffer> getJobsByFreelancerId(int id){
+        return jobsBean.getJobsByFreelancerId(id);
     }
 
 }
