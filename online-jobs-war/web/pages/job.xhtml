@@ -43,15 +43,18 @@
                             <div class="col-lg-8 column">
                                 <div class="job-single-sec">
                                     <div class="job-single-head">
-                                        <div class="job-thumb"> <img src="#{jobBean.job.providerId.imageBase64}" alt="" /> </div>
-                                        <div class="job-head-info">
-                                            <h4>#{jobBean.job.providerId.name}</h4>
-                                            <span>Member since 
-                                                <h:outputText value="#{jobBean.job.providerId.date}">
-                                                    <f:converter converterId="timefromnow"/>
-                                                </h:outputText>
-                                            </span>
-                                        </div>
+                                        <h:link outcome="employer">
+                                            <f:param name="id" value="#{jobBean.job.providerId.id}" />
+                                            <div class="job-thumb"> <img src="#{jobBean.job.providerId.imageBase64}" alt="" /> </div>
+                                            <div class="job-head-info">
+                                                <h4>#{jobBean.job.providerId.name}</h4>
+                                                <span>Member since 
+                                                    <h:outputText value="#{jobBean.job.providerId.date}">
+                                                        <f:converter converterId="timefromnow"/>
+                                                    </h:outputText>
+                                                </span>
+                                            </div>
+                                        </h:link>
                                     </div><!-- Job Head -->
                                     <div class="job-details">
                                         <h3>Job Description</h3>

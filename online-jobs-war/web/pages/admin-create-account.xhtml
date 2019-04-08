@@ -38,10 +38,10 @@
                                         <i class="fa fa-user"></i>
                                     </div>
                                     <div class="cfield">
-                                        <h:inputText label="Password" value="#{adminBean.password}">
+                                        <h:inputSecret label="Password" value="#{adminBean.password}">
                                             <f:validateLength minimum="3"/>
                                             <f:passThroughAttribute name="placeholder" value="Password" />
-                                        </h:inputText>
+                                        </h:inputSecret>
                                         <i class="fa fa-key"></i>
                                     </div>
                                     <span>Fill the fields below if user type is Candidate or Provider</span>
