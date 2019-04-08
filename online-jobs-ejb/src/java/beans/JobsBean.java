@@ -189,6 +189,14 @@ public class JobsBean implements JobsBeanLocal {
         q.setParameter("id", providerId);
         return ((Provider) q.getSingleResult()).getJobCollection();
     }
+    
+    @Override
+    public List<JobOffer> getJobsByFreelancerId(int freelancerId) {
+        em.flush();
+        Query q = em.createNamedQuery("JobOffer.findByFreelancerId");
+        q.setParameter("freelancerId", freelancerId);
+        return q.getResultList();
+    }
 
     @Override
     public boolean hasFreelancerOfferedToJob(int freelancerId, int jobId) {

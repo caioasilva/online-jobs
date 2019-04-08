@@ -12,6 +12,7 @@ import javax.ejb.Local;
 import model.Provider;
 import model.Job;
 import model.JobKeyword;
+import model.JobOffer;
 
 /**
  *
@@ -50,4 +51,6 @@ public interface JobsBeanLocal {
     void revokeOfferToJob(int freelancerId, int jobId);
 
     void completeJob(int jobId);
+    
+    List<JobOffer> getJobsByFreelancerId(int freelancerId);
 }
