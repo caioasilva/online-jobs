@@ -47,8 +47,13 @@ public class LoginFilter implements Filter {
         } else if (((HttpServletRequest) request).getServletPath().compareTo("/login.xhtml") == 0){
             String contextPath = ((HttpServletRequest) request).getContextPath();
             ((HttpServletResponse) response).sendRedirect(contextPath + "/pages/index.xhtml");
+        } else if ((loginBean.getUser().getType() != 'a' && ((HttpServletRequest) request).getServletPath().contains("/pages/admin-")) || 
+                (loginBean.getUser().getType() != 'p' && ((HttpServletRequest) request).getServletPath().contains("/pages/employer-")) ||
+                (loginBean.getUser().getType() != 'f' && ((HttpServletRequest) request).getServletPath().contains("/pages/candidate-")) ){
+            ((HttpServletResponse) response).sendError(403);
+            return;
+            
         }
-
         chain.doFilter(request, response);
 
     }
