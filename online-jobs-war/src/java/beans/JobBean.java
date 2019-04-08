@@ -209,5 +209,8 @@ public class JobBean implements Serializable {
     public List<JobOffer> getJobsByFreelancerId(int id){
         return jobsBean.getJobsByFreelancerId(id);
     }
-
+    
+    public List<Job> getAllJobs(){
+        return jobsBean.getAllJobs();
+    }
 }

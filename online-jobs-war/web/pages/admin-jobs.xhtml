@@ -11,19 +11,19 @@
             <f:event listener="#{loginBean.refresh()}" type="preRenderView"/>
         </f:metadata>
         <ui:define name="dashboard-menu">
-            <ui:include src="/snippets/employer_dashboard_menu.xhtml"/>
+            <ui:include src="/snippets/admin_dashboard_menu.xhtml"/>
         </ui:define>
-        <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.provider.name}" />
+        <ui:param name = "headerTitle" value = "Welcome Admin" />
         <ui:define name="dashboard-content">
             <div class="manage-jobs-sec">
                 <h3>Manage Jobs</h3>
                 <div class="extra-job-info">
-                    <span><i class="la la-clock-o"></i><strong>#{loginBean.user.provider.jobCollection.size()}</strong> Job Posted</span>
+                    <span><i class="la la-clock-o"></i><strong>#{jobBean.allJobs.size()}</strong> Job Posted</span>
                     <!--<span><i class="la la-file-text"></i><strong>1</strong> Application</span>-->
                     <!--<span><i class="la la-users"></i><strong>18</strong> Active Jobs</span>-->
                 </div>
                 <h:form class="manage-jobs-sec">
-                    <h:dataTable value="#{loginBean.user.provider.jobCollection}" var="item">
+                    <h:dataTable value="#{jobBean.allJobs}" var="item">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#" />
