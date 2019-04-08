@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/templates/dashboard.xhtml">
+        <ui:define name="dashboard-menu">
+            <ui:include src="/snippets/employer_dashboard_menu.xhtml"/>
+        </ui:define>
+        <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.provider.name}" />
+        <ui:define name="dashboard-content">
+            <div>
+            <h:form enctype="multipart/form-data">
+                <div class="profile-title">
+                    <h3>My Profile</h3>
+                    <div class="upload-img-bar">
+                        <span class="round"><img src="#{loginBean.user.provider.imageBase64}" class="img-trocar" /></span>
+                        <div class="upload-info">
+
+                                <h:outputLabel for="img-file" value="Pick a file" styleClass="upload" />
+                                <h:inputFile id="img-file" value="#{loginBean.uploadedFile}" styleClass="upload" onchange="javascript:readURL(this);"> 
+                                    <f:passThroughAttribute name="accept" value="image/*"/>
+                                </h:inputFile>
+
+                            <!--<a href="#" title="">Browse</a>-->
+                            <span>Max file size is 1MB. Suitable files are .jpg &amp; .png</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-form-edit">
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <span class="pf-title">Company's Name</span>
+                            <div class="pf-field">
+                                <h:inputText value="#{loginBean.user.provider.name}" />
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <span class="pf-title">Company's email</span>
+                            <div class="pf-field">
+                                <h:inputText value="#{loginBean.user.provider.email}" />
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <span class="pf-title">Description of the Company</span>
+                            <div class="pf-field">
+                                <h:inputTextarea value="#{loginBean.user.provider.message}"/>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8" style="margin-bottom: 2em;">
+                            <button type="submit" jsf:action="#{loginBean.updateUser()}">Update</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </h:form>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

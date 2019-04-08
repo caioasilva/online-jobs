@@ -45,6 +45,13 @@ public class Provider implements Serializable {
     @Lob
     @Column(name = "IMAGE")
     private byte[] image;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 50)
+    @Column(name = "EMAIL")
+    private String email;
+    @Lob
+    @Column(name = "MESSAGE")
+    private String message;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "providerId")
     private Collection<Payments> paymentsCollection;
     @Basic(optional = false)
@@ -161,13 +168,6 @@ public class Provider implements Serializable {
         this.date = date;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
     @XmlTransient
     public Collection<Payments> getPaymentsCollection() {
@@ -176,6 +176,31 @@ public class Provider implements Serializable {
 
     public void setPaymentsCollection(Collection<Payments> paymentsCollection) {
         this.paymentsCollection = paymentsCollection;
+    }
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

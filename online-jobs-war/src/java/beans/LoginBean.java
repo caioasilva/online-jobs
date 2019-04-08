@@ -55,7 +55,7 @@ public class LoginBean implements Serializable {
     private String password;
     private String error = "";
     private Part uploadedFile;
-    
+
     private String newpassword;
     private String oldpassword;
 
@@ -144,10 +144,11 @@ public class LoginBean implements Serializable {
         }
 
     }
-    
-    public void refresh(){
-        if (loggedIn)
+
+    public void refresh() {
+        if (loggedIn) {
             this.user = usersBean.getUser(user.getId());
+        }
     }
 
     public String logout() {
@@ -163,7 +164,11 @@ public class LoginBean implements Serializable {
 
     public void updateUser() {
         if (uploadedFile != null) {
-            saveFile();
+            if (user.getType() == 'f') {
+                saveFile();
+            } else if (user.getType() == 'p') {
+                saveFileProvider();
+            }
         }
         user = usersBean.updateUser(user);
     }
@@ -178,17 +183,28 @@ public class LoginBean implements Serializable {
             }
         }
     }
-    
-    public BigDecimal sumPayments(){
+
+    public void saveFileProvider() {
+        if (uploadedFile.getSize() > 0 && uploadedFile.getSize() <= 524288) {
+            try (InputStream input = uploadedFile.getInputStream()) {
+                boolean a = false;
+                user.getProvider().setImage(IOUtils.readFully(input, (int) uploadedFile.getSize(), a));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public BigDecimal sumPayments() {
         return freelancersBean.getSumByFreelancerId(user.getFreelancer().getId());
     }
 
-    public void changePassword(){
-        if (oldpassword.compareTo(user.getPassword())==0){
+    public void changePassword() {
+        if (oldpassword.compareTo(user.getPassword()) == 0) {
             user.setPassword(newpassword);
             user = usersBean.updateUser(user);
             error = "Password changed succesfully";
-        }else{
+        } else {
             error = "Current Password doesn't match";
         }
     }
