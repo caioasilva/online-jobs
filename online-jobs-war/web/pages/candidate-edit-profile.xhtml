@@ -13,67 +13,68 @@
         <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.freelancer.name}" />
         <ui:define name="dashboard-content">
             <div>
-            <h:form enctype="multipart/form-data">
-                <div class="profile-title">
-                    <h3>My Profile</h3>
-                    <div class="upload-img-bar">
-                        <span class="round"><img src="#{loginBean.user.freelancer.imageBase64}" class="img-trocar" /></span>
-                        <div class="upload-info">
+                <h:messages />
+                <h:form enctype="multipart/form-data">
+                    <div class="profile-title">
+                        <h3>My Profile</h3>
+                        <div class="upload-img-bar">
+                            <span class="round"><img src="#{loginBean.user.freelancer.imageBase64}" class="img-trocar" /></span>
+                            <div class="upload-info">
 
                                 <h:outputLabel for="img-file" value="Pick a file" styleClass="upload" />
                                 <h:inputFile id="img-file" value="#{loginBean.uploadedFile}" styleClass="upload" onchange="javascript:readURL(this);"> 
                                     <f:passThroughAttribute name="accept" value="image/*"/>
                                 </h:inputFile>
 
-                            <!--<a href="#" title="">Browse</a>-->
-                            <span>Max file size is 1MB. Suitable files are .jpg &amp; .png</span>
+                                <!--<a href="#" title="">Browse</a>-->
+                                <span>Max file size is 1MB. Suitable files are .jpg &amp; .png</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="profile-form-edit">
+                    <div class="profile-form-edit">
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <span class="pf-title">Full Name</span>
-                            <div class="pf-field">
-                                <h:inputText value="#{loginBean.user.freelancer.name}" />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <span class="pf-title">Full Name</span>
+                                <div class="pf-field">
+                                    <h:inputText label="Name" value="#{loginBean.user.freelancer.name}" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <span class="pf-title">Job Title</span>
-                            <div class="pf-field">
-                                <h:inputText value="#{loginBean.user.freelancer.role}" />
+                            <div class="col-lg-6">
+                                <span class="pf-title">Job Title</span>
+                                <div class="pf-field">
+                                    <h:inputText label="Job Title" value="#{loginBean.user.freelancer.role}" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <span class="pf-title">Email</span>
-                            <div class="pf-field">
-                                <h:inputText value="#{loginBean.user.freelancer.email}" />
+                            <div class="col-lg-6">
+                                <span class="pf-title">E-mail</span>
+                                <div class="pf-field">
+                                    <h:inputText label="E-mail" value="#{loginBean.user.freelancer.email}" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <span class="pf-title">Skills</span>
-                            <div class="">
-                                <h:inputText value="#{loginBean.skillsString}">
-                                    <f:passThroughAttribute name="data-role" value="tagsinput"/>
-                                </h:inputText>
+                            <div class="col-lg-12">
+                                <span class="pf-title">Skills</span>
+                                <div class="">
+                                    <h:inputText value="#{loginBean.skillsString}">
+                                        <f:passThroughAttribute name="data-role" value="tagsinput"/>
+                                    </h:inputText>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <span class="pf-title">Description</span>
-                            <div class="pf-field">
-                                <h:inputTextarea value="#{loginBean.user.freelancer.message}"/>
+                            <div class="col-lg-12">
+                                <span class="pf-title">Description</span>
+                                <div class="pf-field">
+                                    <h:inputTextarea label="Description" value="#{loginBean.user.freelancer.message}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12" style="margin-bottom: 2em;">
+                                <button type="submit" jsf:action="#{loginBean.updateUser()}">Update</button>
                             </div>
                         </div>
 
-                        <div class="col-lg-12" style="margin-bottom: 2em;">
-                            <button type="submit" jsf:action="#{loginBean.updateUser()}">Update</button>
-                        </div>
                     </div>
 
-                </div>
-
-            </h:form>
+                </h:form>
             </div>
         </ui:define>
 

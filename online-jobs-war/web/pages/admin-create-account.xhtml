@@ -20,9 +20,10 @@
                     <div class="col-lg-12">
                         <div class="account-popup-area signup-popup-box static">
                             <div class="account-popup">
-                                #{adminBean.msg}
-                                <span>Choose the user type below</span>
+                                <h:messages />
                                 <h:form class="account-popup">
+                                    #{adminBean.msg}
+                                    <span>Choose the user type below</span>
                                     <div class="select-user">
                                         <h:selectOneRadio value="#{adminBean.usertype}" label="User Type" required="true" class="select-user">
                                             <f:selectItem itemValue = "f" itemLabel = "Candidate" />

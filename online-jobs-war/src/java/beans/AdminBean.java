@@ -79,7 +79,7 @@ public class AdminBean {
 
     public void createUser() {
         if (usersBean.createUser(usertype.charAt(0), username, password, name, email) != null) {
-            msg = "Sucess!";
+            msg = "Success!";
         } else {
             msg = "Error creating user";
         }
