@@ -27,16 +27,8 @@
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
             <div class="responsivemenu">
-                <ui:insert name="menu">
-                    <c:if test="${loginBean.user.type == 'f'}">
-                        <ui:include src="/snippets/candidate_menu.xhtml"/>
-                    </c:if>
-                    <c:if test="${loginBean.user.type == 'p'}">
-                        <ui:include src="/snippets/provider_menu.xhtml"/>
-                    </c:if>
-                    <c:if test="${loginBean.user.type == 'a'}">
-                        <ui:include src="/snippets/admin_menu.xhtml"/>
-                    </c:if>
+                <ui:insert name="menu">                 
+                    <ui:include src="/snippets/menu.xhtml"/>
                 </ui:insert>
             </div>
         </div>
@@ -62,16 +54,8 @@
                     </ul>
                 </div><!-- Btn Extras -->
                 <nav>
-                    <ui:insert name="menu">
-                        <c:if test="${loginBean.user.type == 'f'}">
-                            <ui:include src="/snippets/candidate_menu.xhtml"/>
-                        </c:if>
-                        <c:if test="${loginBean.user.type == 'p'}">
-                            <ui:include src="/snippets/provider_menu.xhtml"/>
-                        </c:if>
-                        <c:if test="${loginBean.user.type == 'a'}">
-                            <ui:include src="/snippets/admin_menu.xhtml"/>
-                        </c:if>
+                    <ui:insert name="menu">                 
+                        <ui:include src="/snippets/menu.xhtml"/>
                     </ui:insert>
                 </nav><!-- Menus -->
             </div>

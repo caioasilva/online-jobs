@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Log.findAll", query = "SELECT l FROM Log l")
     , @NamedQuery(name = "Log.findById", query = "SELECT l FROM Log l WHERE l.id = :id")
-    , @NamedQuery(name = "Log.findByDate", query = "SELECT l FROM Log l WHERE l.date = :date")})
+    , @NamedQuery(name = "Log.findByDate", query = "SELECT l FROM Log l WHERE l.date = :date")
+    , @NamedQuery(name = "Log.getHighestID", query = "SELECT MAX(l.id) from Log l")})
 public class Log implements Serializable {
 
     private static final long serialVersionUID = 1L;

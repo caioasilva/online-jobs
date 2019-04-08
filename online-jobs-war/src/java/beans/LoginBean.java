@@ -12,8 +12,10 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.ManagedBean;
@@ -27,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import model.Freelancer;
 import model.FreelancerSkill;
+import model.Payments;
 import model.Provider;
 import model.User;
 import sun.misc.IOUtils;
@@ -52,6 +55,25 @@ public class LoginBean implements Serializable {
     private String password;
     private String error = "";
     private Part uploadedFile;
+
+    private String newpassword;
+    private String oldpassword;
+
+    public String getNewpassword() {
+        return newpassword;
+    }
+
+    public void setNewpassword(String newpassword) {
+        this.newpassword = newpassword;
+    }
+
+    public String getOldpassword() {
+        return oldpassword;
+    }
+
+    public void setOldpassword(String oldpassword) {
+        this.oldpassword = oldpassword;
+    }
 
     public Part getUploadedFile() {
         return uploadedFile;
@@ -113,7 +135,7 @@ public class LoginBean implements Serializable {
         user = usersBean.getUser(username, password);
         if (user != null) {
             loggedIn = true;
-            error = "Logged";
+            error = "";
 
             return "/pages/index.xhtml?faces-redirect=true";
         } else {
@@ -121,6 +143,12 @@ public class LoginBean implements Serializable {
             return "";
         }
 
+    }
+
+    public void refresh() {
+        if (loggedIn) {
+            this.user = usersBean.getUser(user.getId());
+        }
     }
 
     public String logout() {
@@ -136,7 +164,11 @@ public class LoginBean implements Serializable {
 
     public void updateUser() {
         if (uploadedFile != null) {
-            saveFile();
+            if (user.getType() == 'f') {
+                saveFile();
+            } else if (user.getType() == 'p') {
+                saveFileProvider();
+            }
         }
         user = usersBean.updateUser(user);
     }
@@ -150,7 +182,30 @@ public class LoginBean implements Serializable {
                 e.printStackTrace();
             }
         }
-
     }
 
+    public void saveFileProvider() {
+        if (uploadedFile.getSize() > 0 && uploadedFile.getSize() <= 524288) {
+            try (InputStream input = uploadedFile.getInputStream()) {
+                boolean a = false;
+                user.getProvider().setImage(IOUtils.readFully(input, (int) uploadedFile.getSize(), a));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public BigDecimal sumPayments() {
+        return freelancersBean.getSumByFreelancerId(user.getFreelancer().getId());
+    }
+
+    public void changePassword() {
+        if (oldpassword.compareTo(user.getPassword()) == 0) {
+            user.setPassword(newpassword);
+            user = usersBean.updateUser(user);
+            error = "Password changed succesfully";
+        } else {
+            error = "Current Password doesn't match";
+        }
+    }
 }

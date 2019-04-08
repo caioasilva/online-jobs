@@ -25,10 +25,14 @@
                                                     <div class="job-thumb"> <img src="#{providerBean.provider.imageBase64}"/></div>
                                                     <div class="job-single-info3">
                                                         <h3>#{providerBean.provider.name}</h3>
-                                                        <!--<span><i class="fa fa-map-marker"></i>Sacramento, California</span><span class="job-is ft">Full time</span>-->
+
                                                         <ul class="tags-jobs">
+                                                            <li><i class="fa fa-map-marker"></i>ID: #{providerBean.id}</li>
                                                             <li><i class="fa fa-file-text"></i> Total Jobs: #{providerBean.provider.jobCollection.size()}</li>
-                                                            <li><i class="fa fa-calendar-o"></i> Join Date: #{providerBean.provider.date}</li>
+                                                            <li><i class="fa fa-calendar-o"></i> Member since: 
+                                                                <h:outputText value="#{providerBean.provider.date}">
+                                                                    <f:converter converterId="timefromnow"/>
+                                                                </h:outputText> </li>
                                                             <!--<li><i class="fa fa-eye"></i> Views 5683</li>-->
                                                         </ul>
                                                     </div>
@@ -77,16 +81,14 @@
                                                         <li><i class="fa fa-file-text"></i><h3>Posted Jobs</h3><span>#{providerBean.provider.jobCollection.size()}</span></li>
                                                         <!--<li><i class="fa fa-map"></i><h3>Locations</h3><span>United States, San Diego</span></li>-->
                                                         <!--<li><i class="fa fa-bars"></i><h3>Categories</h3><span>Arts, Design, Media</span></li>-->
-                                                        <li><i class="fa fa-clock-o"></i><h3>Member Since</h3><span>
-                                                                <h:outputText value="#{providerBean.provider.date}">
-                                                                    <f:converter converterId="timefromnow"/>
-                                                                </h:outputText>
+                                                        <li><i class="fa fa-clock-o"></i><h3>Join Date</h3><span>
+                                                                #{providerBean.provider.date}
                                                             </span></li>
-<!--                                                        <li><i class="fa fa-users"></i><h3>Team Size</h3><span>15</span></li>
-                                                        <li><i class="fa fa-user"></i><h3>Followers</h3><span>15</span></li>-->
+                                                        <!--                                                        <li><i class="fa fa-users"></i><h3>Team Size</h3><span>15</span></li>
+                                                                                                                <li><i class="fa fa-user"></i><h3>Followers</h3><span>15</span></li>-->
                                                     </ul>
                                                 </div><!-- Job Overview -->
-      
+
                                             </div>
                                         </div>
                                     </div>

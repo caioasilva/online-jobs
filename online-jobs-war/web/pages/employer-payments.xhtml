@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/templates/dashboard.xhtml">
+        <ui:define name="dashboard-menu">
+            <ui:include src="/snippets/employer_dashboard_menu.xhtml"/>
+        </ui:define>
+        <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.provider.name}" />
+        <ui:define name="dashboard-content">
+            <div class="manage-jobs-sec">
+                <h3>Payments</h3>
+                <div class="extra-job-info">
+                    <span><i class="fa fa-clock-o"></i><strong>#{loginBean.user.provider.paymentsCollection.size()}</strong> Payments</span>
+                    <!--<span><i class="fa fa-money"></i><strong>€ 100</strong></span>-->
+                    <!--<span><i class="la la-users"></i><strong>18</strong> Active Jobs</span>-->
+                </div>
+                <h:form class="manage-jobs-sec">
+                    <h:dataTable value="#{loginBean.user.provider.paymentsCollection}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id" />
+                            </f:facet>
+                            <span>#{item.id}</span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Job Id" />
+                            </f:facet>
+                            <span>#{item.jobId.id}</span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Job Title" />
+                            </f:facet>
+                            <div class="table-list-title">
+                                <h3> 
+                                    <h:link outcome="job">
+                                        <f:param name="id" value="#{item.jobId.id}" />
+                                        #{item.jobId.title}
+                                    </h:link>
+                                </h3>
+                            </div>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Employee" />
+                            </f:facet>
+                            <div class="table-list-title">
+                                <h3> 
+                                    <h:link outcome="candidate">
+                                        <f:param name="id" value="#{item.freelancerId.id}" />
+                                        #{item.freelancerId.name}
+                                    </h:link>
+                                </h3>
+                            </div>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Payment Date" />
+                            </f:facet>
+                            <span><h:outputText value="#{item.date}">
+                                    <f:converter converterId="timefromnow"/>
+                                </h:outputText></span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Amount" />
+                            </f:facet>
+                            <span class="status active">€ #{item.amount}</span>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form>
+
+            </div>
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+

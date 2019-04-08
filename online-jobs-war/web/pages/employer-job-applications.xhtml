@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/templates/dashboard.xhtml">
+        <f:metadata>
+            <f:viewParam name="id" value="#{jobBean.id}"/>
+            <f:event listener="#{jobBean.init()}" type="preRenderView"/>
+        </f:metadata>
+        <ui:define name="dashboard-menu">
+            <ui:include src="/snippets/employer_dashboard_menu.xhtml"/>
+        </ui:define>
+        <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.provider.name}" />
+        <ui:define name="dashboard-content">
+            <div class="emply-resume-sec" style="padding-bottom: 50px;">
+                <h3>Candidates for job ##{jobBean.id}: #{jobBean.job.title}</h3>
+                <h:form>
+                    <ui:repeat value="#{jobBean.job.jobOfferCollection}" var="item">
+                        <div class="emply-resume-list">
+                            <h:link outcome="candidate">
+                                <f:param name="id" value="#{item.freelancer.id}" />
+                                <div class="emply-resume-thumb">
+                                    <img src="#{item.freelancer.imageBase64}" alt="" />
+                                </div>
+                                <div class="emply-resume-info">
+                                    <h3>#{item.freelancer.name}</h3>
+                                    <span><i>#{item.freelancer.role}</i></span>
+                                    <p><i class="fa fa-clock-o"></i>Member since 
+                                        <h:outputText value="#{item.freelancer.date}">
+                                            <f:converter converterId="timefromnow"/>
+                                        </h:outputText>
+                                    </p>
+                                </div>
+                            </h:link>
+                            <div class="action-resume">
+                                <div class="action-center">
+                                    <h:panelGroup rendered="${jobBean.job.status eq 'open'}">
+                                        <span>Action <i class="fa fa-angle-down"></i></span>
+                                        <ul>
+                                            <li>
+                                                <h:link outcome="candidate">
+                                                    <f:param name="id" value="#{item.freelancer.id}" />
+                                                    <i class="fa fa-user"></i>View Profile
+                                                </h:link>
+                                            </li>
+                                            <li>
+
+                                                <h:commandLink action="#{jobBean.acceptCandidate(jobBean.id, item.freelancer.id)}">
+                                                    <b> <i class="fa fa-check"></i>Accept Candidate</b>
+                                                </h:commandLink>    
+
+                                            </li>
+                                        </ul>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="${item.status eq 'accepted'}">
+                                        <span>Accepted</span>
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            <div class="del-resume">
+                                <a href="#" title=""><i class="la la-trash-o"></i></a>
+                            </div>
+                        </div><!-- Emply List -->
+                    </ui:repeat>
+                </h:form>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

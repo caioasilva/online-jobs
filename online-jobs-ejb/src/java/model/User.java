@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
     , @NamedQuery(name = "User.findByUsernamePassword", query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password")
 //    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
-    , @NamedQuery(name = "User.findByType", query = "SELECT u FROM User u WHERE u.type = :type")})
+    , @NamedQuery(name = "User.findByType", query = "SELECT u FROM User u WHERE u.type = :type")
+    , @NamedQuery(name = "User.getHighestID", query = "SELECT MAX(u.id) from User u")})
 public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")

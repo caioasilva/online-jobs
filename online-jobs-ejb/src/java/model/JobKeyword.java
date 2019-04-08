@@ -26,7 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "JobKeyword.findAll", query = "SELECT j FROM JobKeyword j")
     , @NamedQuery(name = "JobKeyword.findByJobId", query = "SELECT j FROM JobKeyword j WHERE j.jobKeywordPK.jobId = :jobId")
     , @NamedQuery(name = "JobKeyword.findByKeyword", query = "SELECT j FROM JobKeyword j WHERE j.jobKeywordPK.keyword = :keyword")
-    , @NamedQuery(name = "JobKeyword.findByKeywordIgnoreCase", query = "SELECT j FROM JobKeyword j WHERE lower(j.jobKeywordPK.keyword) like lower(:keyword)")})
+    , @NamedQuery(name = "JobKeyword.findByKeywordIgnoreCase", query = "SELECT j FROM JobKeyword j WHERE lower(j.jobKeywordPK.keyword) like lower(:keyword)")
+    , @NamedQuery(name = "JobKeyword.deleteByJobId", query = "DELETE FROM JobKeyword j WHERE j.jobKeywordPK.jobId = :jobId")})
 public class JobKeyword implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -61,7 +61,9 @@ public class CandidateBean {
         this.skills = skills;
     }
     
-   
+    public List<Freelancer> getSomeCandidates(){
+        return freelancersBean.getFreelancersLimit(0, 4);
+    }
     
     /**
      * Creates a new instance of JobBean

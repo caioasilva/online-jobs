@@ -41,12 +41,15 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Freelancer.findById", query = "SELECT f FROM Freelancer f WHERE f.id = :id")
     , @NamedQuery(name = "Freelancer.findByName", query = "SELECT f FROM Freelancer f WHERE f.name = :name")
     , @NamedQuery(name = "Freelancer.findByEmail", query = "SELECT f FROM Freelancer f WHERE f.email = :email")
-    , @NamedQuery(name = "Freelancer.findByRole", query = "SELECT f FROM Freelancer f WHERE f.role = :role")})
+    , @NamedQuery(name = "Freelancer.findByRole", query = "SELECT f FROM Freelancer f WHERE f.role = :role")
+    , @NamedQuery(name = "Freelancer.getHighestID", query = "SELECT MAX(f.id) from Freelancer f")})
 public class Freelancer implements Serializable {
 
     @Lob
     @Column(name = "IMAGE")
     private byte[] image;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "freelancerId")
+    private Collection<Payments> paymentsCollection;
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATE")
@@ -178,13 +181,6 @@ public class Freelancer implements Serializable {
         
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
     public Date getDate() {
         return date;
@@ -192,6 +188,24 @@ public class Freelancer implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+
+    @XmlTransient
+    public Collection<Payments> getPaymentsCollection() {
+        return paymentsCollection;
+    }
+
+    public void setPaymentsCollection(Collection<Payments> paymentsCollection) {
+        this.paymentsCollection = paymentsCollection;
+    }
+
+    public byte [] getImage() {
+        return image;
+    }
+
+    public void setImage(byte [] image) {
+        this.image = image;
     }
     
 }

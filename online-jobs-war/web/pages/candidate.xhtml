@@ -30,7 +30,7 @@
                                                 <f:converter converterId="timefromnow"/>
                                             </h:outputText>
                                         </p>
-                                        <!--<p><i class="fa fa-map-marker"></i>Istanbul / Turkey</p>-->
+                                        <p><i class="fa fa-user"></i>id: #{candidateBean.candidate.id}</p>
                                         <div class="skills-badge">
                                             <ui:repeat  var="item" value="#{candidateBean.skills}">
                                                 <span>#{item.skill}</span>
@@ -41,38 +41,15 @@
                                 </div>
                                 <div class="cand-details-sec">
                                     <div class="row no-gape">
-                                        <div class="col-lg-9 column">
+                                        <div class="col-lg-12 column">
                                             <div class="cand-details">
-                                                <!--<div class="job-overview style2">
-                                                        <ul>
-                                                                <li><i class="fa fa-money"></i><h3>Offerd Salary</h3><span>£15,000 - £20,000</span></li>
-                                                                <li><i class="fa fa-mars-double"></i><h3>Gender</h3><span>Female</span></li>
-                                                                <li><i class="fa fa-thumb-tack"></i><h3>Career Level</h3><span>Executive</span></li>
-                                                                <li><i class="fa fa-puzzle-piece"></i><h3>Industry</h3><span>Management</span></li>
-                                                                <li><i class="fa fa-shield"></i><h3>Experience</h3><span>2 Years</span></li>
-                                                                <li><i class="fa fa-line-chart "></i><h3>Qualification</h3><span>Bachelor Degree</span></li>
-                                                        </ul>
-                                                </div> Job Overview -->
-                                                <h2>Candidates About</h2>
+                                               
+                                                <h2>About #{candidateBean.candidate.name}</h2>
                                                 <p>#{candidateBean.candidate.message}</p>
 
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 column">
-                                            <div class="job-overview style3">
-                                                <!--<ul>
-                                                            <li><i class="fa fa-briefcase"></i><h3>Candidates About</h3></li>
-                                                            <li><i class="fa fa-graduation-cap"></i><h3>Education</h3></li>
-                                                            <li><i class="fa fa-file-text"></i><h3>Work Experience</h3></li>
-                                                            <li><i class="fa fa-puzzle-piece"></i><h3>Portfolio</h3></li>
-                                                            <li><i class="fa fa-thumb-tack"></i><h3>Professional Skills</h3></li>
-                                                            <li><i class="fa fa-line-chart "></i><h3>Awards</h3></li>
-                                                            <li><i class="fa fa-user "></i><h3>Companies Followed By</h3></li>
-                                                    </ul>-->
-                                                <a href="#" title="" class="save-resume">Save Resume</a>
-                                                <a href="#" title="" class="contct-user">Contact #{candidateBean.candidate.name}</a>
-                                            </div><!-- Job Overview -->
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

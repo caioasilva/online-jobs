@@ -82,7 +82,7 @@ public class SearchBean {
             results = jobsBean.getJobsByKeywords(keywords);
 
         } else {
-            results = jobsBean.getAllJobs();
+            results = jobsBean.getAllOpenJobs();
         }
     }
 

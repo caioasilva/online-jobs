@@ -5,6 +5,7 @@
  */
 package beans;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import model.Freelancer;
 import model.FreelancerSkill;
+import model.JobOffer;
 
 /**
  *
@@ -65,7 +67,16 @@ public class FreelancersBean implements FreelancersBeanLocal {
         for (FreelancerSkill skill:skills){
             em.persist(skill);
         }
-        
+        em.flush(); 
     }
-
+    
+    @Override
+    public BigDecimal getSumByFreelancerId(int FreelancerId) {
+        em.flush();
+        Query q = em.createNamedQuery("Payments.getSumByFreelancerId");
+        q.setParameter("freelancerId", FreelancerId);
+        return (BigDecimal)q.getSingleResult();
+    }
+    
+    
 }

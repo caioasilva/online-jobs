@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/templates/dashboard.xhtml">
+        <f:metadata>
+            <f:event listener="#{loginBean.refresh()}" type="preRenderView"/>
+        </f:metadata>
+        <ui:define name="dashboard-menu">
+            <ui:include src="/snippets/employer_dashboard_menu.xhtml"/>
+        </ui:define>
+        <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.provider.name}" />
+        <ui:define name="dashboard-content">
+            <div class="manage-jobs-sec">
+                <h3>Manage Jobs</h3>
+                <div class="extra-job-info">
+                    <span><i class="la la-clock-o"></i><strong>#{loginBean.user.provider.jobCollection.size()}</strong> Job Posted</span>
+                    <!--<span><i class="la la-file-text"></i><strong>1</strong> Application</span>-->
+                    <!--<span><i class="la la-users"></i><strong>18</strong> Active Jobs</span>-->
+                </div>
+                <h:form class="manage-jobs-sec">
+                    <h:dataTable value="#{loginBean.user.provider.jobCollection}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#" />
+                            </f:facet>
+                            <span>#{item.id}</span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Title" />
+                            </f:facet>
+                            <div class="table-list-title">
+                                <h3> 
+                                    <h:link outcome="job">
+                                        <f:param name="id" value="#{item.id}" />
+                                        #{item.title}
+                                    </h:link>
+                                </h3>
+                            </div>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Aplications" />
+                            </f:facet>
+
+                            <span class="applied-field">#{item.jobOfferCollection.size()}</span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Creation Date" />
+                            </f:facet>
+                            <span><h:outputText value="#{item.creationDate}">
+                                    <f:converter converterId="timefromnow"/>
+                                </h:outputText></span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Status" />
+                            </f:facet>
+                            <span class="status active"> #{item.status}</span>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action" />
+                            </f:facet>
+                            <ul class="action_job">
+                                <li><span>Delete</span>
+                                    <h:commandLink action="#{jobBean.deleteJobAdmin(item.id)}">
+                                        <i class="fa fa-trash-o"></i>
+                                    </h:commandLink>
+                                </li>
+                            </ul>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form>
+
+            </div>
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+

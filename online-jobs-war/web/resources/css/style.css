@@ -6945,7 +6945,7 @@ aside .widget.border:first-child {
     margin-bottom: 60px;
     margin-left: 30px
 }
-.manage-jobs-sec > table thead tr td {
+.manage-jobs-sec > table thead tr td,th {
     font-size: 15px;
     font-weight: bold;
     color: #fb236a;
