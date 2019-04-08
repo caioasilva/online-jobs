@@ -48,4 +48,6 @@ public interface JobsBeanLocal {
     void offerToJob(int freelancerId, int jobId);
     
     void revokeOfferToJob(int freelancerId, int jobId);
+
+    void completeJob(int jobId);
 }

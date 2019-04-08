@@ -90,6 +90,13 @@
                                         </h:commandLink>
                                     </li>
                                 </h:panelGroup>
+                                <h:panelGroup rendered="${item.status eq 'closed'}">
+                                    <li><span>Mark as Completed</span>
+                                        <h:commandLink action="#{jobBean.completeJob(item.id)}">
+                                            <i class="fa fa-check"></i>
+                                        </h:commandLink>
+                                    </li>
+                                </h:panelGroup>
                             </ul>
                         </h:column>
 

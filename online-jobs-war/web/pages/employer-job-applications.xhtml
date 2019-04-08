@@ -16,7 +16,7 @@
         </ui:define>
         <ui:param name = "headerTitle" value = "Welcome #{loginBean.user.provider.name}" />
         <ui:define name="dashboard-content">
-            <div class="emply-resume-sec">
+            <div class="emply-resume-sec" style="padding-bottom: 50px;">
                 <h3>Candidates for job ##{jobBean.id}: #{jobBean.job.title}</h3>
                 <h:form>
                     <ui:repeat value="#{jobBean.job.jobOfferCollection}" var="item">
@@ -51,7 +51,7 @@
 
                                                 <h:commandLink action="#{jobBean.acceptCandidate(jobBean.id, item.freelancer.id)}">
                                                     <b> <i class="fa fa-check"></i>Accept Candidate</b>
-                                                </h:commandLink>
+                                                </h:commandLink>    
 
                                             </li>
                                         </ul>

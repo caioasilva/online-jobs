@@ -89,8 +89,13 @@ public class JobsBean implements JobsBeanLocal {
 
     @Override
     public int createJob(Job j) {
-        int id = ((Integer) em.createNamedQuery("Job.getHighestID").getSingleResult()) + 1;
-        System.out.println(id);
+        int id;
+        try {
+            id = ((Integer) em.createNamedQuery("Job.getHighestID").getSingleResult()) + 1;
+        } catch (Exception e) {
+            id = 1;
+        }
+//        System.out.println(id);
         j.setId(id);
         j.setStatus("open");
         j.setCreationDate(new Date());
@@ -157,7 +162,12 @@ public class JobsBean implements JobsBeanLocal {
         JobOffer offer = (JobOffer) q.getSingleResult();
         offer.setStatus("accepted");
         offer.getJob().setStatus("closed");
-        int id = ((Integer) em.createNamedQuery("Payments.getHighestID").getSingleResult()) + 1;
+        int id;
+        try {
+            id = ((Integer) em.createNamedQuery("Payments.getHighestID").getSingleResult()) + 1;
+        } catch (Exception e) {
+            id = 1;
+        }
         Payments pay = new Payments(id);
         pay.setFreelancerId(offer.getFreelancer());
         pay.setJobId(offer.getJob());
@@ -203,7 +213,7 @@ public class JobsBean implements JobsBeanLocal {
         jb.setStatus("waiting");
         em.persist(jb);
     }
-    
+
     @Override
     public void revokeOfferToJob(int freelancerId, int jobId) {
         Query q = em.createNamedQuery("JobOffer.findByJobId&FreelancerId");
@@ -213,7 +223,7 @@ public class JobsBean implements JobsBeanLocal {
             JobOffer r = (JobOffer) q.getSingleResult();
             if (r.getStatus().compareTo("accepted") != 0) {
                 em.remove(r);
-            }else{
+            } else {
                 System.err.println("Not possible to remove, it is already accepted");
             }
         } catch (Exception e) {
@@ -221,6 +231,15 @@ public class JobsBean implements JobsBeanLocal {
         }
 
     }
-    
-    
+
+    @Override
+    public void completeJob(int jobId) {
+        Query q = em.createNamedQuery("Job.findById");
+        q.setParameter("id", jobId);
+        Job j = (Job) q.getSingleResult();
+        j.setStatus("completed");
+        em.merge(j);
+        em.flush();
+    }
+
 }
