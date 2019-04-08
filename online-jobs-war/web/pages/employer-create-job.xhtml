@@ -25,7 +25,7 @@
 
                 <h:form>
                     <div class="row justify-content-center">
-                        <div class="col-lg-12">
+                        <div class="col-lg-9">
                             <span class="pf-title">Job Title</span>
                             <div class="pf-field">
                                 <h:inputText label="Job Title" value="#{jobBean.job.title}">
@@ -33,7 +33,7 @@
                                 </h:inputText>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-9">
                             <span class="pf-title">Keywords</span>
                             <div class="">
                                 <h:inputText label="Keywords" value="#{jobBean.keywordsString}">
@@ -42,7 +42,7 @@
                                 </h:inputText>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-9">
                             <span class="pf-title">Payment €</span>
                             <div class="pf-field">
                                 <h:inputText value="#{jobBean.job.payment}" label="Payment" >
@@ -51,13 +51,13 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-12">
+                        <div class="col-lg-9">
                             <span class="pf-title">Job Description</span>
                             <div class="pf-field">
                                 <h:inputTextarea label="Description" value="#{jobBean.job.description}"/>
                             </div>
                         </div>
-                        <div class="col-lg-12"  style="margin-bottom: 2em;">
+                        <div class="col-lg-9"  style="margin-bottom: 2em;">
                             <button type="submit" jsf:action="#{jobBean.createJob()}">Create Job</button>
                         </div>
                     </div>
