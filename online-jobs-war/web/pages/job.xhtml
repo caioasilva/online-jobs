@@ -70,7 +70,7 @@
                                             </h:commandLink>
                                         </h:panelGroup>
                                         <h:panelGroup rendered="#{jobBean.hasFreelancerOfferedToJob(loginBean.user.freelancer.id, jobBean.id)}">
-                                            <h:commandLink action="#{jobBean.revoke(jobBean.id)}" class="apply-thisjob">
+                                            <h:commandLink action="#{jobBean.revoke(jobBean.id)}" class="apply-thisjob revoke">
                                                 <i class="fa fa-remove"></i>Revoke Offer
                                             </h:commandLink>
                                         </h:panelGroup>

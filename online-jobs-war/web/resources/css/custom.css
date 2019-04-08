@@ -44,3 +44,12 @@ label.upload::before{
 input.upload {
     display: none;
 }
+
+.revoke {
+    color:#fb236a;
+    border-color:#fb236a;
+}
+.revoke:hover{
+    background: #fb236a !important;
+    border-color:#fb236a;
+}
