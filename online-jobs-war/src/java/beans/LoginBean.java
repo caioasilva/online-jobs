@@ -55,6 +55,25 @@ public class LoginBean implements Serializable {
     private String password;
     private String error = "";
     private Part uploadedFile;
+    
+    private String newpassword;
+    private String oldpassword;
+
+    public String getNewpassword() {
+        return newpassword;
+    }
+
+    public void setNewpassword(String newpassword) {
+        this.newpassword = newpassword;
+    }
+
+    public String getOldpassword() {
+        return oldpassword;
+    }
+
+    public void setOldpassword(String oldpassword) {
+        this.oldpassword = oldpassword;
+    }
 
     public Part getUploadedFile() {
         return uploadedFile;
@@ -116,7 +135,7 @@ public class LoginBean implements Serializable {
         user = usersBean.getUser(username, password);
         if (user != null) {
             loggedIn = true;
-            error = "Logged";
+            error = "";
 
             return "/pages/index.xhtml?faces-redirect=true";
         } else {
@@ -164,4 +183,13 @@ public class LoginBean implements Serializable {
         return freelancersBean.getSumByFreelancerId(user.getFreelancer().getId());
     }
 
+    public void changePassword(){
+        if (oldpassword.compareTo(user.getPassword())==0){
+            user.setPassword(newpassword);
+            user = usersBean.updateUser(user);
+            error = "Password changed succesfully";
+        }else{
+            error = "Current Password doesn't match";
+        }
+    }
 }

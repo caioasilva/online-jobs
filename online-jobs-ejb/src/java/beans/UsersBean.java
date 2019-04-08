@@ -49,7 +49,9 @@ public class UsersBean implements UsersBeanLocal {
 
     @Override
     public User updateUser(User u) {
-        return em.merge(u);
+        User r = (User)em.merge(u);
+        em.flush();
+        return r;
     }
 
     @Override
